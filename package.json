@@ -1,0 +1,28 @@
+{
+  "name": "csdnsynchexo",
+  "version": "1.0.0",
+  "description": "csdn博客自动同步到hexo",
+  "main": "index.js",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "node-fetch": "^2.1.2",
+    "turndown": "^4.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  },
+  "scripts": {
+    "start":"node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/673800357/CsdnSyncHexo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/673800357/CsdnSyncHexo/issues"
+  },
+  "homepage": "https://github.com/673800357/CsdnSyncHexo#readme"
+}

@@ -42,6 +42,7 @@ const generate = async (url, output) => {
     writeStream.write(`tags: ${tags.join(' ')}\n`);
     writeStream.write(`categories: ${categories.join(' ')}\n`);
     writeStream.write('---\n\n');
+    writeStream.write('<!--more-->\n\n')
     writeStream.write(markdown);
     writeStream.end('')
 }

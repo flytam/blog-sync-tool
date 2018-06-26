@@ -1,7 +1,8 @@
-const { csdn,output } = require("./config");
+const { csdn, output, base } = require("./config");
 const fetch = require("node-fetch");
 const cheerio = require('cheerio');
 const generate = require('./generate')
+const { execSync } = require('child_process');
 const main = async () => {
     const articleList = [];
 
@@ -20,11 +21,19 @@ const main = async () => {
         }
     }
     console.log('正在生成文件....')
-    const p = articleList.map(link => generate(link,output));
+    const p = articleList.map(link => generate(link, output));
 
     await Promise.all(p)
-    console.log('生成完成')
-
+    console.log('生成完成.....准备进行hexo部署')
+    try {
+        execSync('hexo g', { cwd: base })
+        console.log('生成静态文件成功....')
+        execSync('hexo d', { cwd: base })
+        console.log('部署成功....')
+    } catch (e) {
+        console.log(e)
+    }
+    
 }
 
 main()

@@ -1,26 +1,43 @@
 # CsdnSyncHexo
 
-一个方便的一键同步csdn博客上的内容到hexo的脚本
+一个方便的一键同步 csdn 博客上的内容到 hexo 的脚本
 
-目前
+### 使用
 
-### 使用方法
+#### 全局安装
 
-1. 在config.js中配置csdn博客地址，配置生成文件路径
+// 未发布，待测试...公司代理有毒
 
-2. .... 没有2了
-
-3.
 ```bash
-npm i
-npm start
+npm i -g hsync
 ```
-### todo
 
-- 要将more标签加入到文章的合适位置。。不然没有那个查看更多的功能
+#### 命令行指定运行
 
-- 定时同步
+```bash
+hsync --output /Users/flytam/Desktop/coding/blog/source/_posts --base /Users/flytam/Desktop/coding/blog --csdn https://blog.csdn.net/flytam
+```
 
+#### 配置文件运行
+
+```js
+// 配置文件
+exports.csdn = "https://blog.csdn.net/flytam"; // csdn博客地址
+exports.output = "/Users/flytam/Desktop/coding/blog/source/_posts"; // 这里可以定向到你的hexo源文件的地方，使用相对路径
+exports.base = "/Users/flytam/Desktop/coding/blog"; // hexo博客源文件目录
+```
+
+```bash
+// 指定配置文件
+hsync --config 配置文件相对路径
+```
+
+#### 查看帮助
+
+```bash
+hsync --help
+```
 
 ### license
+
 MIT

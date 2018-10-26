@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
+    "commander": "^2.19.0",
     "node-fetch": "^2.1.2",
     "turndown": "^4.0.2"
   },
@@ -12,17 +13,20 @@
     "nodemon": "^1.17.5"
   },
   "scripts": {
-    "start":"node index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "hsync": "./start.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/673800357/CsdnSyncHexo.git"
+    "url": "git+https://github.com/flytam/CsdnSyncHexo.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "flytam",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/673800357/CsdnSyncHexo/issues"
+    "url": "https://github.com/flytam/CsdnSyncHexo/issues"
   },
-  "homepage": "https://github.com/673800357/CsdnSyncHexo#readme"
+  "homepage": "https://github.com/flytam/CsdnSyncHexo#readme"
 }

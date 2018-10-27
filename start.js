@@ -20,7 +20,7 @@ if (program.config) {
   } catch (e) {
     console.log(e);
   }
-} else if (program.csdn && program.output && program.base) {
+} else if (program.csdn && program.output) {
   const { csdn, output, base } = program;
   config = {
     csdn,

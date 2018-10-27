@@ -1,12 +1,10 @@
 # CsdnSyncHexo
 
-一个方便的一键同步 csdn 博客上的内容到 hexo 的脚本
+一个方便的一键同步 csdn 博客上的内容到 hexo 的命令行工具
 
 ### 使用
 
 #### 全局安装
-
-// 未发布，待测试...公司代理有毒
 
 ```bash
 npm i -g hsync
@@ -37,6 +35,10 @@ hsync --config 配置文件相对路径
 ```bash
 hsync --help
 ```
+
+### 单元测试
+
+待添加
 
 ### license
 

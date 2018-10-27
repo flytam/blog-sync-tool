@@ -1,20 +1,13 @@
 {
   "name": "csdnsynchexo",
   "version": "1.0.0",
-  "description": "csdn博客自动同步到hexo",
+  "description": "csdn博客自动生成hexo源文件的命令行工具",
   "main": "index.js",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "commander": "^2.19.0",
     "node-fetch": "^2.1.2",
     "turndown": "^4.0.2"
-  },
-  "devDependencies": {
-    "nodemon": "^1.17.5"
-  },
-  "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
     "hsync": "./start.js"

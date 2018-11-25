@@ -5,7 +5,7 @@ const main = require("./index");
 const path = require("path");
 const { version } = require("./package.json");
 program
-  .version("0.1.0")
+  .version(version)
   .option("-c, --config [config]", "配置文件相对路径")
   .option("-o, --output [output]", "本地生成博客源md文件路径")
   .option("--csdn [csdn]", "csdn博客地址")

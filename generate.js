@@ -28,21 +28,19 @@ const generate = async (url, output) => {
   const title = $(".title-article").text();
   const tags = []; //标签
   const categories = []; //分类
-  $(".article-bar-bottom")
-    .find(".tag-link")
-    .each(function() {
-      const content = $(this)
-        .text()
-        .replace(/\t/g, "");
-      if (
-        /^(https|http):\/\/so.csdn.net\/so\/search\//.test($(this).attr("href"))
-      ) {
-        // 标签
-        tags.push(content);
-      } else {
-        categories.push(content);
-      }
-    });
+  $(".tag-link").each(function() {
+    const content = $(this)
+      .text()
+      .replace(/\t/g, "");
+    if (
+      /^(https|http):\/\/so.csdn.net\/so\/search\//.test($(this).attr("href"))
+    ) {
+      // 标签
+      tags.push(content);
+    } else {
+      categories.push(content);
+    }
+  });
   const writeStream = fs.createWriteStream(
     path.join(output, `./${title}.md`),
     "utf8"

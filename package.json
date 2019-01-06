@@ -11,8 +11,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "tsc && node ",
-    "x": "tsc --init "
+    "test": "tsc && node "
   },
   "bin": {
     "hsync": "./dist/start.js"

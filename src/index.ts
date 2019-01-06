@@ -1,12 +1,12 @@
-const fetch = require("node-fetch");
-const cheerio = require("cheerio");
-const generate = require("./generate");
-const { execSync } = require("child_process");
-const main = async ({ csdn, output, base }) => {
-  const articleList = [];
-
+import generate from "./generate";
+import cheerio from "cheerio";
+import fetch from "node-fetch";
+import { execSync } from "child_process";
+import { configType } from "./config";
+const main = async ({ csdn, output, base }: configType): Promise<void> => {
+  const articleList: string[] = [];
   for (let i = 0; true; i++) {
-    const res = await fetch(`${csdn}/article/list/${i}`);
+    const res = await fetch(`${csdn}/article/list/${i}`, {});
     const html = await res.text();
     const $ = cheerio.load(html);
     const list = $(".article-item-box");
@@ -37,4 +37,4 @@ const main = async ({ csdn, output, base }) => {
   }
 };
 
-module.exports = main;
+export default main;

@@ -1,9 +1,11 @@
 #!/usr/bin/env node
+import program from "commander";
+import { configType } from "./config";
+import main from "./index";
+import path from "path";
 
-const program = require("commander");
-const main = require("./index");
-const path = require("path");
 const { version } = require("./package.json");
+
 program
   .version(version)
   .option("-c, --config [config]", "配置文件相对路径")
@@ -13,7 +15,8 @@ program
   .parse(process.argv);
 
 console.log(`${version}版本 csdn -> hexo生成器`);
-let config = {};
+
+let config: configType = {};
 if (program.config) {
   try {
     config = require(path.join(__dirname, program.config));

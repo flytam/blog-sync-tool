@@ -10,9 +10,12 @@
     "turndown": "^4.0.2"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "rm -rf ./dist && tsc",
     "test": "tsc && node "
   },
+  "files": [
+    "dist"
+  ],
   "bin": {
     "hsync": "./dist/start.js"
   },

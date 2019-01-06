@@ -1,12 +1,11 @@
-const { csdn } = require("./config");
-const fetch = require("node-fetch");
-const cheerio = require("cheerio");
-const TurndownService = require("turndown");
-const turndownService = new TurndownService();
-const fs = require("fs");
-const path = require("path");
+import fetch from "node-fetch";
+import cheerio from "cheerio";
+import TurndownService from "turndown";
+import fs from "fs";
+import path from "path";
 
-const generate = async (url, output) => {
+const turndownService = new TurndownService();
+const generate = async (url: string, output: string): Promise<void> => {
   output = path.resolve(output);
   try {
     fs.accessSync(output, fs.constants.W_OK);
@@ -20,14 +19,14 @@ const generate = async (url, output) => {
   const $ = cheerio.load(html);
   const htmlcontent = $(".markdown_views").html();
 
-  const markdown = turndownService.turndown(htmlcontent || "");
+  const markdown: string = turndownService.turndown(htmlcontent || "");
   const time = $(".time")
     .text()
     .replace(/([\u4e00-\u9fa5])/g, "-")
     .replace(/\-\s/, " "); //时间格式化
   const title = $(".title-article").text();
-  const tags = []; //标签
-  const categories = []; //分类
+  const tags: string[] = []; //标签
+  const categories: string[] = []; //分类
   $(".tag-link").each(function() {
     const content = $(this)
       .text()
@@ -56,4 +55,4 @@ const generate = async (url, output) => {
   writeStream.end("");
 };
 
-module.exports = generate;
+export default generate;

@@ -3,9 +3,7 @@ import program from "commander";
 import { configType } from "./config";
 import main from "./index";
 import path from "path";
-
-const { version } = require("./package.json");
-
+import { version } from "../package.json";
 program
   .version(version)
   .option("-c, --config [config]", "配置文件相对路径")

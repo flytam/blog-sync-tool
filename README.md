@@ -12,6 +12,8 @@
 
 <!-- [![npm license][license-image]][download-url] -->
 
+[![Build Status](https://travis-ci.org/flytam/CsdnSyncHexo.svg?branch=master)](https://travis-ci.org/flytam/CsdnSyncHexo)
+
 [npm-image]: https://img.shields.io/npm/v/hsync.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/hsync
 [travis-image]: https://img.shields.io/travis/flytam/CsdnSyncHexo.svg?style=flat-square

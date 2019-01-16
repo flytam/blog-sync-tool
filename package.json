@@ -34,6 +34,7 @@
     "@types/jest": "^23.3.12",
     "@types/node": "~10.10.3",
     "@types/node-fetch": "^2.1.4",
+    "coveralls": "^3.0.2",
     "jest": "^23.6.0",
     "ts-jest": "^23.10.5",
     "typescript": "^3.2.2"

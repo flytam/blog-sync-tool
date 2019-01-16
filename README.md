@@ -72,7 +72,9 @@ hsync --help
 
 ### 单元测试
 
-待添加
+npm run test
+
+ps: 测试  用自己的 csdn 博客作为  例子进行测试。覆盖率很努力了
 
 ### license
 

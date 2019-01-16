@@ -3,14 +3,12 @@ import cheerio from "cheerio";
 import TurndownService from "turndown";
 import fs from "fs";
 import path from "path";
-
+import { fsExistsSync } from "./util";
 const turndownService = new TurndownService();
+
 const generate = async (url: string, output: string): Promise<void> => {
   output = path.resolve(output);
-  try {
-    fs.accessSync(output, fs.constants.W_OK);
-  } catch (err) {
-    // 不存在
+  if (!fsExistsSync(output)) {
     console.log("输出目录不存在，正在创建...");
     fs.mkdirSync(output);
   }
@@ -54,5 +52,4 @@ const generate = async (url: string, output: string): Promise<void> => {
   writeStream.write(markdown);
   writeStream.end("");
 };
-
 export default generate;

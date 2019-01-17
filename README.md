@@ -37,7 +37,7 @@
 #### 全局安装
 
 ```bash
-npm i -g hsync
+npm i -g csdnsynchexo
 ```
 
 #### 命令行指定运行

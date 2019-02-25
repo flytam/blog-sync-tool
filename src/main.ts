@@ -3,24 +3,38 @@ import cheerio from "cheerio";
 import fetch from "node-fetch";
 import { execSync } from "child_process";
 import { configType } from "./config";
-const main = async ({ csdn, output, base }: configType): Promise<void> => {
-  const articleList: string[] = [];
+const main = async ({
+  csdn,
+  output,
+  base,
+  cookies
+}: configType): Promise<void> => {
+  const article: { id: string; time: string }[] = [];
   for (let i = 0; true; i++) {
     const res = await fetch(`${csdn}/article/list/${i}`, {});
     const html = await res.text();
     const $ = cheerio.load(html);
     const list = $(".article-item-box");
-    if (list.length > 0) {
+    if (list && list.length > 0) {
       $(".article-item-box").each(function() {
-        // 获取当页文章连接
-        articleList.push($("a", this).attr("href"));
+        // 获取当页文章连接id
+        const idResult = $("a", this)
+          .attr("href")
+          .match(/(\d{1,})$/);
+
+        if (idResult) {
+          article.push({
+            id: idResult[0],
+            time: $(".date", this).text()
+          });
+        }
       });
     } else {
       break;
     }
   }
   console.log("正在生成文件....");
-  const p = articleList.map(link => generate(link, output));
+  const p = article.map(({ id, time }) => generate(id, time, output, cookies));
 
   await Promise.all(p);
   console.log("生成完成.....");

@@ -1,20 +1,14 @@
 # CsdnSyncHexo
 
 [![NPM version][npm-image]][npm-url]
-
-<!-- [![build status][travis-image]][travis-url]
+[![build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
-[![David deps][david-image]][david-url] -->
-
+[![David deps][david-image]][david-url]
 [![node version][node-image]][node-url]
-
 [![npm download][download-image]][download-url]
+[![npm license][license-image]][download-url]
 
-<!-- [![npm license][license-image]][download-url] -->
-
-[![Build Status](https://travis-ci.org/flytam/CsdnSyncHexo.svg?branch=master)](https://travis-ci.org/flytam/CsdnSyncHexo)
-
-[npm-image]: https://img.shields.io/npm/v/hsync.svg?style=flat-square
+[npm-image]: https://img.shields.io/npm/v/csdnsynchexo.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/csdnsynchexo
 [travis-image]: https://img.shields.io/travis/flytam/CsdnSyncHexo.svg?style=flat-square
 [travis-url]: https://travis-ci.org/flytam/CsdnSyncHexo
@@ -22,17 +16,19 @@
 [coveralls-url]: https://coveralls.io/r/flytam/CsdnSyncHexo?branch=master
 [david-image]: https://img.shields.io/david/flytam/CsdnSyncHexo.svg?style=flat-square
 [david-url]: https://david-dm.org/flytam/CsdnSyncHexo
-[node-image]: https://img.shields.io/badge/node.js-%3E=_8.0-green.svg?style=flat-square
+[node-image]: https://img.shields.io/badge/node.js-%3E=_8.0.0-green.svg?style=flat-square
 [node-url]: http://nodejs.org/download/
-[download-image]: https://img.shields.io/npm/dm/hsync.svg?style=flat-square
-[download-url]: https://npmjs.org/package/hsync
-[license-image]: https://img.shields.io/npm/l/hsync.svg
+[download-image]: https://img.shields.io/npm/dm/csdnsynchexo.svg?style=flat-square
+[download-url]: https://npmjs.org/package/csdnsynchexo
+[license-image]: https://img.shields.io/npm/l/csdnsynchexo.svg
 
-[![GitHub license](https://img.shields.io/github/license/flytam/CsdnSyncHexo.svg)](https://github.com/flytam/CsdnSyncHexo/blob/master/LICENSE)
-
-一个方便的一键同步 csdn 博客上的内容到 hexo 源文件的命令行工具
+一个方便的一键同步 csdn 博客上的内容到 hexo 源文件工具
 
 ### 使用
+
+#### 更新日志
+
+v2.0 修复了一些问题
 
 #### 全局安装
 
@@ -43,7 +39,7 @@ npm i -g csdnsynchexo
 #### 命令行指定运行
 
 ```bash
-hsync --output /Users/flytam/Desktop/coding/blog/source/_posts --base /Users/flytam/Desktop/coding/blog --csdn https://blog.csdn.net/flytam
+hsync --output /Users/flytam/Desktop/coding/blog/source/_posts --base /Users/flytam/Desktop/coding/blog --csdn https://blog.csdn.net/flytam --cookies your_cookies_info
 ```
 
 #### 配置文件运行
@@ -53,12 +49,34 @@ hsync --output /Users/flytam/Desktop/coding/blog/source/_posts --base /Users/fly
 exports.csdn = "https://blog.csdn.net/flytam"; // csdn博客地址
 exports.output = "/Users/flytam/Desktop/coding/blog/source/_posts"; // 这里可以定向到你的hexo源文件的地方
 exports.base = "/Users/flytam/Desktop/coding/blog"; // hexo博客源文件目录，用于执行hexo命令
+exports.cookies = "";
 ```
 
 ```bash
 // 指定配置文件
 hsync --config 配置文件相对路径
 ```
+
+#### 手动
+
+1
+
+```bash
+git clone git@github.com:flytam/CsdnSyncHexo.git
+node ./dist/start.js ...后面的配置信息
+```
+
+#### FAQ
+
+- 为什么需要 cookie 信息
+
+拉取文章内容的接口在 csdn 中需要登录后的 cookie 信息。这个登录只要是任意用户登录就可以了。本来想过账号密码模拟登录的，但是网上的 csdn 文章模拟登录似乎已经不适用了。自己抓包后有几个字段不知道怎么构建，于是直接简单粗暴指定 cookie 了
+
+- cookie 如何获取
+
+最简单粗暴获取。登录后，到自己博客的一篇文章中，选择编辑，然后浏览器开发者工具查看请求，复制下面这段的 cookie 到配置文件或者指定运行。
+
+![cookie 获取](./img/cookie.png)
 
 #### 查看帮助
 
@@ -68,7 +86,7 @@ hsync --help
 
 #### 已知 bug
 
-1、解析代码块不太好
+~~1、解析代码块不太好~~
 
 ~~2、获取 csdn 文章的标签和分类有点问题~~
 
@@ -76,7 +94,7 @@ hsync --help
 
 npm run test
 
-ps: 测试  用自己的 csdn 博客作为  例子进行测试。覆盖率很努力了
+ps: 测试  用自己的 csdn 博客作为  例子进行测试
 
 ### license
 

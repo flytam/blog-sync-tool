@@ -1,4 +1,4 @@
-import { base, output, csdn } from "./inputParam";
+import { base, output, csdn, cookies } from "../config";
 import generate from "../src/generate";
 import path from "path";
 import { fsExistsSync } from "../src/util";
@@ -9,8 +9,10 @@ import { execSync } from "child_process";
 
 describe("normal generate func test", () => {
   beforeAll(() => {
-    //return generate(csdn, output);
-    execSync(`node ./dist/start.js --output ${output} --csdn ${csdn}`);
+    const c = process.env.cookies || cookies;
+    execSync(
+      `node ./dist/start.js --output ${output} --csdn ${csdn} --cookies ${c}`
+    );
   });
 
   test("test generate markdown files", () => {
@@ -47,6 +49,6 @@ describe("normal generate func test", () => {
   });
 
   afterAll(() => {
-    execSync(`rm -rf ${output}`);
+    // execSync(`rm -rf ${output}`);
   });
 });

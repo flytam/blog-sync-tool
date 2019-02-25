@@ -3,7 +3,9 @@ language: node_js
 node_js:
   - "8.9.3"
 install: npm install
-script: npm run test
+script:
+  - mkdir example
+  - npm run test
 after_success:
   - cat ./tests/coverage/lcov.info | node_modules/.bin/coveralls --verbose
   - cat ./tests/coverage/coverage.json | node_modules/codecov.io/bin/codecov.io.js

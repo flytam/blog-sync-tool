@@ -42,20 +42,24 @@ npm i -g csdnsynchexo
 hsync --output /Users/flytam/Desktop/coding/blog/source/_posts --base /Users/flytam/Desktop/coding/blog --csdn https://blog.csdn.net/flytam --cookies your_cookies_info
 ```
 
-#### 配置文件运行
+#### 配置文件运行 （推荐）
 
-```js
-// 配置文件
-exports.csdn = "https://blog.csdn.net/flytam"; // csdn博客地址
-exports.output = "/Users/flytam/Desktop/coding/blog/source/_posts"; // 这里可以定向到你的hexo源文件的地方
-exports.base = "/Users/flytam/Desktop/coding/blog"; // hexo博客源文件目录，用于执行hexo命令
-exports.cookies = "";
+```json
+// config.json
+{
+  "csdn": "https://blog.csdn.net/flytam", // csdn博客地址
+  "output": "./example", // 这里可以定向到你的hexo源文件的地方
+  "cookies": "xxxx", // cookie
+  "base": "可选" // hexo博客源文件目录，用于执行hexo命令
+}
 ```
 
 ```bash
 // 指定配置文件
-hsync --config 配置文件相对路径
+hsync --config ./config.json
 ```
+
+#### 小白教程
 
 #### 手动
 
@@ -92,9 +96,13 @@ hsync --help
 
 ### 单元测试
 
+![x](./img/test.png)
+
 npm run test
 
 ps: 测试  用自己的 csdn 博客作为  例子进行测试
+
+travis 不知道为什么。。好像有点问题
 
 ### license
 

@@ -1,17 +1,18 @@
 {
   "name": "csdnsynchexo",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "description": "csdn博客自动生成hexo源文件的命令行工具",
   "main": "index.js",
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "commander": "^2.19.0",
+    "filenamify": "^4.1.0",
     "node-fetch": "^2.1.2"
   },
   "scripts": {
     "build": "rm -rf ./dist && tsc",
     "test": "npm run build && jest",
-    "local_test": "npm run build && node ./dist/start.js --config ../config.js"
+    "local_test": "npm run build && node ./dist/start.js --config ./m_config.json"
   },
   "files": [
     "dist"
@@ -32,7 +33,7 @@
   "devDependencies": {
     "@types/cheerio": "^0.22.10",
     "@types/jest": "^23.3.12",
-    "@types/node": "^10.10.3",
+    "@types/node": "^10.14.17",
     "@types/node-fetch": "^2.1.4",
     "coveralls": "^3.0.2",
     "jest": "^23.6.0",

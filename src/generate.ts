@@ -2,7 +2,7 @@ import fetch from "node-fetch";
 import fs from "fs";
 import path from "path";
 import { fsExistsSync } from "./util";
-
+import filenamify from "filenamify";
 const generate = async (
   id: string,
   time: string,
@@ -21,7 +21,13 @@ const generate = async (
   });
 
   const {
-    data: { markdowncontent, tags: tagsStr, categories: categoriesStr, title }
+    data: {
+      markdowncontent,
+      content,
+      tags: tagsStr,
+      categories: categoriesStr,
+      title
+    }
   } = await res.json();
 
   let tags: string[] = []; //标签
@@ -36,9 +42,10 @@ const generate = async (
   }
 
   const writeStream = fs.createWriteStream(
-    path.join(output, `./${title}.md`),
+    path.join(output, `./${filenamify(title)}.md`),
     "utf8"
   );
+  console.log("生成", title);
   writeStream.write("---\n");
   writeStream.write(`title: ${title}\n`);
   writeStream.write(`date: ${time}\n`);
@@ -46,7 +53,7 @@ const generate = async (
   writeStream.write(`categories: ${categories.join(" ")}\n`);
   writeStream.write("---\n\n");
   writeStream.write("<!--more-->\n\n");
-  writeStream.write(markdowncontent || "");
+  writeStream.write(markdowncontent || content || "");
   writeStream.end("");
 };
 export default generate;

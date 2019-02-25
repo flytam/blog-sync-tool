@@ -12,15 +12,16 @@ const output = "./example";
 describe("normal generate func test", () => {
   beforeAll(() => {
     const c = process.env.cookies;
+
     execSync(
-      `node ./dist/start.js --output ${output} --csdn ${csdn} --cookies ${c}`
+      `node ./dist/start.js --output ${output} --csdn ${csdn} --cookies '${c}'`
     );
   });
 
   test("test generate markdown files", () => {
     expect(
       fsExistsSync(
-        path.join(output, "./深入Preact源码分析（四）setState发生了什么.md")
+        path.resolve(output, "./深入Preact源码分析（四）setState发生了什么.md")
       )
     ).toBeTruthy();
   });
@@ -51,6 +52,6 @@ describe("normal generate func test", () => {
   });
 
   afterAll(() => {
-    // execSync(`rm -rf ${output}`);
+    execSync(`rm -rf ${output}`);
   });
 });

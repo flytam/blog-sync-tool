@@ -18,7 +18,7 @@ console.log(`${version}版本 csdn -> hexo生成器`);
 let config: configType = {};
 if (program.config) {
   try {
-    config = require(path.join(__dirname, program.config));
+    config = require(path.resolve(process.cwd(), program.config));
     console.log(config);
   } catch (e) {
     console.log(e);
@@ -34,4 +34,8 @@ if (program.config) {
 } else {
   console.error("请指定配置文件路径");
 }
-main(config);
+try {
+  main(config);
+} catch (e) {
+  console.warn(e);
+}

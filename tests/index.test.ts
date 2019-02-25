@@ -1,4 +1,4 @@
-import { base, output, csdn, cookies } from "../config";
+//import { base, output, csdn, cookies } from "../config";
 import generate from "../src/generate";
 import path from "path";
 import { fsExistsSync } from "../src/util";
@@ -7,9 +7,11 @@ import fs from "fs";
 import { execSync } from "child_process";
 // 深入Preact源码分析（四）setState发生了什么
 
+const csdn = "https://blog.csdn.net/flytam";
+const output = "./example";
 describe("normal generate func test", () => {
   beforeAll(() => {
-    const c = process.env.cookies || cookies;
+    const c = process.env.cookies;
     execSync(
       `node ./dist/start.js --output ${output} --csdn ${csdn} --cookies ${c}`
     );

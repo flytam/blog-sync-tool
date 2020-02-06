@@ -61,6 +61,9 @@ hsync --config ./config.json
 
 #### 小白教程
 
+#### 可执行程序
+[参考](https://github.com/flytam/blog-sync)
+
 #### 手动
 
 1

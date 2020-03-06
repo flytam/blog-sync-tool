@@ -25,7 +25,9 @@ const main = async ({
         if (idResult) {
           article.push({
             id: idResult[0],
-            time: $(".date", this).text()
+            time: $(".date", this)
+              .text()
+              .trim()
           });
         }
       });

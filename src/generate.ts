@@ -14,11 +14,14 @@ const generate = async (
     console.log("输出目录不存在，正在创建...");
     fs.mkdirSync(output);
   }
-  const res = await fetch(`https://mp.csdn.net/mdeditor/getArticle?id=${id}`, {
-    headers: {
-      cookie: cookies
+  const res = await fetch(
+    `https://blog-console-api.csdn.net/v1/editor/getArticle?id=${id}`,
+    {
+      headers: {
+        cookie: cookies
+      }
     }
-  });
+  );
 
   const {
     data: {

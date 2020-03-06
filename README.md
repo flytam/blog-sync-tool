@@ -28,6 +28,12 @@
 
 #### 更新日志
 
+**_ v2.1.0 2020.3.6 更新 _** CSDN 修改了文章域名，2.1.0 以下版本已经不能用了，请更新
+
+```bash
+npm i -g csdnsynchexo@latest
+```
+
 v2.0 修复了一些问题
 
 #### 全局安装
@@ -63,13 +69,6 @@ hsync --config ./config.json
 
 #### 手动
 
-1
-
-```bash
-git clone git@github.com:flytam/CsdnSyncHexo.git
-node ./dist/start.js ...后面的配置信息
-```
-
 #### FAQ
 
 - 为什么需要 cookie 信息
@@ -78,7 +77,7 @@ node ./dist/start.js ...后面的配置信息
 
 - cookie 如何获取
 
-最简单粗暴获取。登录后，到自己博客的一篇文章中，选择编辑，然后浏览器开发者工具查看请求，复制下面这段的 cookie 到配置文件或者指定运行。
+最简单粗暴获取。登录后，点击将这个 [url](https://blog-console-api.csdn.net/v1/editor/getArticle?id=104101476)复制下面这段的 cookie 到配置文件或者指定运行。
 
 ![cookie 获取](./img/cookie.png)
 

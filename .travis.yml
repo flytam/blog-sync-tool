@@ -1,14 +1,13 @@
-sudo: true
 language: node_js
 node_js:
-  - "8.9.3"
+  - "10"
 before_deploy: npm run build
 deploy:
   provider: npm
-  email: tanjiahui2015@foxmail.com
   skip_cleanup: true
+  email: tanjiahui2015@foxmail.com
   api_key:
-    secure: "$NPM_TOKEN"
+    secure: BWnENMTb0CdS6LNAHk7YpA7vwHavAEAc38UJwnWDNoLB9I9faHte4+293HGlTSnbJjnaGFeXg8pYN3BdK7MQu/xfBNWgylx1HW+GS1rJKPbGkDrOl8MSpNeR23hfwYRIxUXsbVxPiJO9AVAUPtoFC21K+1b059BTql/nUcMVHgDy7pStHqF+7uyq7Zt3ute20YV0LROb4e+478UBZnKupg+9OuFsz9HZXuCrzVjN6LL19Z2mUqkH6W1v7DsEC7R4t3cKEPTJikBMLtq1Ho+u8K9lauLP7uhHqtl9/GqI0KSMc9rPPxkcA37Vcp6Wu4cMK80d/1Cij66yOMagbG2g0nHrVVVReAO1xofr2s3WMc81lvAvuwwVB/iHC2mWHwXApjy2S0ibMvqaK3yY68HKZ+C7MM7M5VqdNsW5gv1rn0dhg04OOFJy4Nk9c7ke1UsvCRaczxe4BZx276Y0DMy+r1+vLPRv7rjRYWM+/dS9KRrwANpaHqcTXrLUDldBUhO4RtJ4aPvRzk1LL/7YgPti95HuyaLNDXfbIWKymnBklDpWV+F0w/Ik6qHnVqrMSltqSazGGzmEv4HfxZyz0uLynyUch0x6zTrFfNVFkc0y4iOkZqazql/n2zegmc4mOnOm2pIxyuRC6z5OPOgTKDEqXCncOkMn8KzK5AyHKg+EhBk=
   on:
     tags: true
-  tag: latest
+    repo: flytam/CsdnSyncHexo

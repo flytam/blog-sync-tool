@@ -1,6 +1,6 @@
 {
   "name": "csdnsynchexo",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "csdn博客自动生成hexo源文件的命令行工具",
   "main": "dist/start.js",
   "dependencies": {

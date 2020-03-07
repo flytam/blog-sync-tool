@@ -1,14 +1,11 @@
-sudo: true
 language: node_js
 node_js:
-  - "8.9.3"
+  - "10"
 before_deploy: npm run build
 deploy:
   provider: npm
   email: tanjiahui2015@foxmail.com
   skip_cleanup: true
-  api_key:
-    secure: "$NPM_TOKEN"
+  api_key: "$NPM_TOKEN"
   on:
-    tags: true
-  tag: latest
+    branch: master

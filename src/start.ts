@@ -23,7 +23,6 @@ let config: configType = {};
 if (program.config) {
   try {
     config = require(path.resolve(process.cwd(), program.config));
-    console.log(config);
   } catch (e) {
     console.log(e);
   }

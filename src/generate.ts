@@ -7,7 +7,7 @@ const generate = async (
   id: string,
   time: string,
   output: string,
-  cookies: string
+  cookie: string
 ): Promise<void> => {
   output = path.resolve(output);
   if (!fsExistsSync(output)) {
@@ -18,21 +18,24 @@ const generate = async (
     `https://blog-console-api.csdn.net/v1/editor/getArticle?id=${id}`,
     {
       headers: {
-        cookie: cookies
+        cookie: cookie
       }
     }
   );
 
-  const {
-    data: {
-      markdowncontent,
-      content,
-      tags: tagsStr,
-      categories: categoriesStr,
-      title
-    }
-  } = await res.json();
+  const { data, code, msg } = await res.json();
+  if (code !== 200) {
+    console.log(code, msg);
+    return;
+  }
 
+  const {
+    markdowncontent,
+    content,
+    tags: tagsStr,
+    categories: categoriesStr,
+    title
+  } = data;
   let tags: string[] = []; //标签
   let categories: string[] = []; //分类
 

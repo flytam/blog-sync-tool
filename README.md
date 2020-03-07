@@ -45,7 +45,7 @@ npm i -g csdnsynchexo
 #### 命令行指定运行
 
 ```bash
-hsync --output /Users/flytam/Desktop/coding/blog/source/_posts --base /Users/flytam/Desktop/coding/blog --csdn https://blog.csdn.net/flytam --cookies your_cookies_info
+hsync --output /Users/flytam/Desktop/coding/blog/source/_posts --base /Users/flytam/Desktop/coding/blog --csdn https://blog.csdn.net/flytam --cookie your_cookie_info
 ```
 
 #### 配置文件运行 （推荐）
@@ -55,7 +55,7 @@ hsync --output /Users/flytam/Desktop/coding/blog/source/_posts --base /Users/fly
 {
   "csdn": "https://blog.csdn.net/flytam", // csdn博客地址
   "output": "./example", // 这里可以定向到你的hexo源文件的地方
-  "cookies": "xxxx", // cookie
+  "cookie": "xxxx", // cookie
   "base": "可选" // hexo博客源文件目录，用于执行hexo命令
 }
 ```
@@ -68,6 +68,7 @@ hsync --config ./config.json
 #### 小白教程
 
 #### 可执行程序
+
 [参考](https://github.com/flytam/blog-sync)
 
 #### 手动
@@ -96,15 +97,15 @@ hsync --help
 
 ~~2、获取 csdn 文章的标签和分类有点问题~~
 
-### 单元测试
+### ~~单元测试~~
 
 ![x](./img/test.png)
 
-npm run test
+~~npm run test~~
 
-ps: 测试  用自己的 csdn 博客作为  例子进行测试
+~~ps: 测试  用自己的 csdn 博客作为  例子进行测试~~
 
-travis 不知道为什么。。好像有点问题
+~~travis 不知道为什么。。好像有点问题~~
 
 ### license
 

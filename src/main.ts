@@ -7,7 +7,7 @@ const main = async ({
   csdn,
   output,
   base,
-  cookies
+  cookie
 }: configType): Promise<void> => {
   const article: { id: string; time: string }[] = [];
   for (let i = 0; true; i++) {
@@ -36,7 +36,7 @@ const main = async ({
     }
   }
   console.log("正在生成文件....");
-  const p = article.map(({ id, time }) => generate(id, time, output, cookies));
+  const p = article.map(({ id, time }) => generate(id, time, output, cookie));
 
   await Promise.all(p);
   console.log("生成完成.....");

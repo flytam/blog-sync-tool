@@ -2,11 +2,13 @@ sudo: true
 language: node_js
 node_js:
   - "8.9.3"
-install: npm install
-script:
-  - mkdir example
-  - npm run test
-after_success:
-  - cat ./tests/coverage/lcov.info | node_modules/.bin/coveralls --verbose
-  - cat ./tests/coverage/coverage.json | node_modules/codecov.io/bin/codecov.io.js
-  - rm -rf ./tests/coverage
+before_deploy: npm run build
+deploy:
+  provider: npm
+  email: tanjiahui2015@foxmail.com
+  skip_cleanup: true
+  api_key:
+    secure: "$NPM_TOKEN"
+  on:
+    tags: true
+  tag: latest

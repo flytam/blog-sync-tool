@@ -1,3 +1,5 @@
+> csdn最近经常改api域名...遇到不能用了，提issue反馈，本仓库会及时跟进
+
 # CsdnSyncHexo
 
 [![NPM version][npm-image]][npm-url]

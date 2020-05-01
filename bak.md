@@ -1,30 +1,4 @@
-> csdn最近经常改api域名...遇到不能用了，提issue反馈，本仓库会及时跟进
-
-# CsdnSyncHexo
-
-[![NPM version][npm-image]][npm-url]
-[![build status][travis-image]][travis-url]
-[![Test coverage][coveralls-image]][coveralls-url]
-[![David deps][david-image]][david-url]
-[![node version][node-image]][node-url]
-[![npm download][download-image]][download-url]
-[![npm license][license-image]][download-url]
-
-[npm-image]: https://img.shields.io/npm/v/csdnsynchexo.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/csdnsynchexo
-[travis-image]: https://img.shields.io/travis/flytam/CsdnSyncHexo.svg?style=flat-square
-[travis-url]: https://travis-ci.org/flytam/CsdnSyncHexo
-[coveralls-image]: https://img.shields.io/coveralls/flytam/CsdnSyncHexo.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/flytam/CsdnSyncHexo?branch=master
-[david-image]: https://img.shields.io/david/flytam/CsdnSyncHexo.svg?style=flat-square
-[david-url]: https://david-dm.org/flytam/CsdnSyncHexo
-[node-image]: https://img.shields.io/badge/node.js-%3E=_8.0.0-green.svg?style=flat-square
-[node-url]: http://nodejs.org/download/
-[download-image]: https://img.shields.io/npm/dm/csdnsynchexo.svg?style=flat-square
-[download-url]: https://npmjs.org/package/csdnsynchexo
-[license-image]: https://img.shields.io/npm/l/csdnsynchexo.svg
-
-一个方便的一键同步 csdn 博客上的内容到 hexo 源文件工具
+> 这个工具很早之前写的了。新年疫情原因宅家太无聊了，简单写下文档使用说明....
 
 > 2020.5.01 更新，支持不传递 cookie，此时则为直接爬去 html 解析
 
@@ -80,7 +54,3 @@ hsync --config ./config.json
 可以看到，我们的 hexo 源文件就生成成功了
 
 码字不易。本工具[仓库](https://github.com/flytam/CsdnSyncHexo)地址。如果觉得有用，你的 star 是我最大的动力 - -
-
-### license
-
-MIT

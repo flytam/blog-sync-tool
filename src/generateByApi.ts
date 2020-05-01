@@ -3,12 +3,10 @@ import fs from "fs";
 import path from "path";
 import { fsExistsSync } from "./util";
 import filenamify from "filenamify";
-const generate = async (
-  id: string,
-  time: string,
-  output: string,
-  cookie: string
-): Promise<void> => {
+import { generateParams } from "./config";
+
+const generate = async (params: generateParams) => {
+  let { output, cookie, time, id } = params;
   output = path.resolve(output);
   if (!fsExistsSync(output)) {
     console.log("输出目录不存在，正在创建...");
@@ -18,8 +16,10 @@ const generate = async (
     `https://blog-console-api.csdn.net/v1/editor/getArticle?id=${id}`,
     {
       headers: {
-        cookie: cookie
-      }
+        cookie: cookie,
+        "user-agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36",
+      },
     }
   );
 
@@ -34,7 +34,7 @@ const generate = async (
     content,
     tags: tagsStr,
     categories: categoriesStr,
-    title
+    title,
   } = data;
   let tags: string[] = []; //标签
   let categories: string[] = []; //分类

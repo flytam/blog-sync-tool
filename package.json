@@ -7,7 +7,8 @@
     "cheerio": "^1.0.0-rc.2",
     "commander": "^2.19.0",
     "filenamify": "^4.1.0",
-    "node-fetch": "^2.1.2"
+    "node-fetch": "^2.1.2",
+    "sitdown": "^1.1.6"
   },
   "scripts": {
     "build": "rm -rf ./dist && tsc",

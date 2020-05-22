@@ -40,12 +40,14 @@ const main = async ({ csdn, output, cookie }: configType) => {
         time,
         output,
         cookie,
+        csdn,
       });
     } else {
       return generateByPage({
         id,
         time,
         output,
+        csdn,
       });
     }
   });

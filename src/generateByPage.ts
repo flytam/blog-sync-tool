@@ -17,7 +17,7 @@ const sitdown = new Sitdown({
 const generateByPage = async (params: generateParams) => {
   //
   let writeStream: fs.WriteStream = null;
-  let { output, time, id } = params;
+  let { output, time, id, csdn } = params;
 
   output = path.resolve(output);
   if (!fsExistsSync(output)) {
@@ -26,12 +26,9 @@ const generateByPage = async (params: generateParams) => {
   }
 
   try {
-    const html = await fetch(
-      `https://blog.csdn.net/flytam/article/details/${id}`,
-      {
-        headers: headers,
-      }
-    ).then((res) => res.text());
+    const html = await fetch(`${csdn}/article/details/${id}`, {
+      headers: headers,
+    }).then((res) => res.text());
 
     let tags: string[] = []; //标签...爬虫获取不到标签
     let categories: string[] = []; //分类
@@ -44,6 +41,9 @@ const generateByPage = async (params: generateParams) => {
 
     // csdn一个诡异的注释<!-- flowchart 箭头图标 勿删 -->
     const commentReg = /<!-- flowchart 箭头图标 勿删 -->/;
+    if (!x) {
+      return;
+    }
     const markdown = sitdown.HTMLToMD(x).replace(commentReg, "");
 
     categories.push($(".tag-link").text().replace(/\s/g, ""));

@@ -12,7 +12,8 @@
   },
   "scripts": {
     "build": "rm -rf ./dist && tsc",
-    "local_test": "npm run build && node ./dist/start.js --config ./m_config.json"
+    "local_test": "npm run build && node ./dist/start.js --config ./m_config.json",
+    "local_test2": "npm run build && node ./dist/start.js --config ./m_config2.json"
   },
   "files": [
     "dist"

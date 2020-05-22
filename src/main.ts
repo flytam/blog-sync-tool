@@ -3,11 +3,14 @@ import generateByPage from "./generateByPage";
 import cheerio from "cheerio";
 import fetch from "node-fetch";
 import { execSync } from "child_process";
+import { headers } from "./headers";
 import { configType } from "./config";
 const main = async ({ csdn, output, cookie }: configType) => {
   const article: { id: string; time: string }[] = [];
   for (let i = 0; true; i++) {
-    const res = await fetch(`${csdn}/article/list/${i}`, {});
+    const res = await fetch(`${csdn}/article/list/${i}`, {
+      headers,
+    });
     const html = await res.text();
     const $ = cheerio.load(html);
     const list = $(".article-item-box");

@@ -1,4 +1,4 @@
-> csdn最近经常改api域名...遇到不能用了，提issue反馈，本仓库会及时跟进
+> csdn 最近经常改 api 域名...遇到不能用了，提 issue 反馈，本仓库会及时跟进
 
 # CsdnSyncHexo
 
@@ -25,6 +25,8 @@
 [license-image]: https://img.shields.io/npm/l/csdnsynchexo.svg
 
 一个方便的一键同步 csdn 博客上的内容到 hexo 源文件工具
+
+> 2020.07.24 修复`socket up`报错 & 打印成功/失败次数
 
 > 2020.5.01 更新，支持不传递 cookie，此时则为直接爬去 html 解析
 

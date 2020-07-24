@@ -5,6 +5,7 @@ import fetch from "node-fetch";
 import { execSync } from "child_process";
 import { headers } from "./headers";
 import { configType } from "./config";
+import { runTasksQueue } from "./util";
 const main = async ({ csdn, output, cookie }: configType) => {
   const article: { id: string; time: string }[] = [];
   for (let i = 0; true; i++) {
@@ -33,27 +34,28 @@ const main = async ({ csdn, output, cookie }: configType) => {
     }
   }
   console.log("正在生成文件....");
+
   const p = article.map(({ id, time }) => {
     if (cookie) {
-      return generateByApi({
-        id,
-        time,
-        output,
-        cookie,
-        csdn,
-      });
+      return [generateByApi, { id, time, output, cookie }] as const;
     } else {
-      return generateByPage({
-        id,
-        time,
-        output,
-        csdn,
-      });
+      return [
+        generateByPage,
+        {
+          id,
+          time,
+          output,
+          csdn,
+        },
+      ] as const;
     }
   });
 
-  await Promise.all(p);
-  console.log("生成完成.....");
+  const { success, fail } = await runTasksQueue(
+    p.map((x) => x[0]),
+    p.map((x) => x[1])
+  );
+  console.log(`生成完成.....成功:${success},失败:${fail}`);
 };
 
 export default main;

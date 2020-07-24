@@ -10,5 +10,5 @@ export interface generateParams {
   time: string;
   output: string;
   cookie?: string;
-  csdn: string;
+  csdn?: string;
 }

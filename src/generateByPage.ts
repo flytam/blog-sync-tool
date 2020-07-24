@@ -14,7 +14,7 @@ const sitdown = new Sitdown({
   hr: "---",
 });
 
-const generateByPage = async (params: generateParams) => {
+const generateByPage = async (params: generateParams & { csdn: string }) => {
   //
   let writeStream: fs.WriteStream = null;
   let { output, time, id, csdn } = params;
@@ -24,10 +24,12 @@ const generateByPage = async (params: generateParams) => {
     console.log("输出目录不存在，正在创建...");
     fs.mkdirSync(output);
   }
-
   try {
     const html = await fetch(`${csdn}/article/details/${id}`, {
-      headers: headers,
+      headers: {
+        "user-agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.132 Safari/537.36",
+      },
     }).then((res) => res.text());
 
     let tags: string[] = []; //标签...爬虫获取不到标签

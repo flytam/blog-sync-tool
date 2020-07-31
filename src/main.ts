@@ -8,7 +8,7 @@ import { configType } from "./config";
 import { runTasksQueue } from "./util";
 const main = async ({ csdn, output, cookie }: configType) => {
   const article: { id: string; time: string }[] = [];
-  for (let i = 0; true; i++) {
+  for (let i = 1; true; i++) {
     const res = await fetch(`${csdn}/article/list/${i}`, {
       headers,
     });

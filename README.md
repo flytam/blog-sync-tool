@@ -1,11 +1,34 @@
-## 一键获取主流平台文章生成 hexo 格式文章
+<h1 align="center">Welcome to csdnsynchexo 👋</h1>
+<p>
+  <a href="https://www.npmjs.com/package/csdnsynchexo" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/csdnsynchexo.svg">
+  </a>
+  <a href="https://github.com/flytam/CsdnSyncHexo#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/flytam/CsdnSyncHexo/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+    <a href="https://npmjs.org/package/csdnsynchexo" target="_blank">
+    <img alt="download" src="https://img.shields.io/npm/dm/csdnsynchexo.svg?style=flat-square" />
+  </a>
+  <a href="https://github.com/flytam/CsdnSyncHexo/blob/master/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/flytam/csdnsynchexo" />
+  </a>
+</p>
 
-#### 安装
+> 支持 csdn/博客园/掘金/segmentfault/腾讯云加社区等平台一键迁移 hexo
 
-```bash
+### 🏠 [Homepage](https://github.com/flytam/CsdnSyncHexo#readme)
+
+## Install
+
+```sh
 # > 3.0版本
 npm i csdnsynchexo@latest
 ```
+
+## Usage
 
 ```bash
 # help
@@ -69,3 +92,29 @@ hsync --config ./config.json
 
 - 部分平台有防盗链，需要支持一键转存图片
 - 测试
+
+## Run tests
+
+```sh
+npm run test
+```
+
+## Author
+
+👤 **flytam**
+
+- Website: github.com/flytam/blog
+- Github: [@flytam](https://github.com/flytam)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/flytam/CsdnSyncHexo/issues). You can also take a look at the [contributing guide](https://github.com/flytam/CsdnSyncHexo/blob/master/CONTRIBUTING.md).
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+Copyright © 2020 [flytam](https://github.com/flytam).<br />
+This project is [MIT](https://github.com/flytam/CsdnSyncHexo/blob/master/LICENSE) licensed.

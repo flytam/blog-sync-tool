@@ -40,7 +40,13 @@
   "files": [
     "dist"
   ],
-  "keywords": [],
+  "keywords": [
+    "csdn",
+    "hexo",
+    "markdown",
+    "juejin",
+    "tencent"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/flytam/CsdnSyncHexo.git"

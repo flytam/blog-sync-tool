@@ -1,44 +1,54 @@
 {
   "name": "csdnsynchexo",
-  "version": "2.2.4",
-  "description": "csdn博客自动生成hexo源文件的命令行工具",
-  "main": "dist/start.js",
+  "version": "3.0.0-beta",
+  "description": "支持csdn/博客园/掘金/segmentfault/腾讯云加社区等平台一键迁移hexo",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node ./src/dev.ts",
+    "build": "rm -rf ./dist && tsc",
+    "prepublish": "npm run build",
+    "patch": "npm version patch",
+    "prepatch": "npm version prepatch",
+    "minor": "npm version minor"
+  },
+  "bin": {
+    "hsync": "./dist/index.js"
+  },
+  "directories": {
+    "test": "tests"
+  },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "commander": "^2.19.0",
-    "filenamify": "^4.1.0",
-    "node-fetch": "^2.1.2",
+    "@types/cheerio": "^0.22.23",
+    "axios": "^0.21.0",
+    "chalk": "^4.1.0",
+    "cheerio": "^1.0.0-rc.3",
+    "commander": "^6.2.0",
+    "filenamify": "^4.2.0",
+    "fs-extra": "^9.0.1",
     "sitdown": "^1.1.6"
   },
-  "scripts": {
-    "build": "rm -rf ./dist && tsc",
-    "local_test": "npm run build && node ./dist/start.js --config ./m_config.json",
-    "local_test2": "npm run build && node ./dist/start.js --config ./m_config2.json"
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.5",
+    "@types/jest": "^26.0.19",
+    "@types/node": "^14.14.12",
+    "jest": "^26.6.3",
+    "prettier": "^2.2.1",
+    "ts-jest": "^26.4.4",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
   },
   "files": [
     "dist"
   ],
-  "bin": {
-    "hsync": "./dist/start.js"
-  },
+  "keywords": [],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/flytam/CsdnSyncHexo.git"
   },
-  "author": "flytam",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/flytam/CsdnSyncHexo/issues"
   },
   "homepage": "https://github.com/flytam/CsdnSyncHexo#readme",
-  "devDependencies": {
-    "@types/cheerio": "^0.22.10",
-    "@types/jest": "^23.3.12",
-    "@types/node": "^10.14.17",
-    "@types/node-fetch": "^2.1.4",
-    "coveralls": "^3.0.2",
-    "jest": "^23.6.0",
-    "ts-jest": "^23.10.5",
-    "typescript": "^3.9.7"
-  }
+  "author": "flytam",
+  "license": "MIT"
 }

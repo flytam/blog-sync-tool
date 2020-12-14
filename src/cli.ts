@@ -13,6 +13,7 @@ export const cli = async () => {
     .option('-o, --output [output]', '本地生成博客源md文件路径')
     .option('--userId [userId]', '用户id')
     .option('--cookie [cookie]', 'cookie信息')
+    .option('--type [type]', '网站类型，例如csdn juejin等')
     .parse(process.argv)
 
   let config = {}
@@ -25,7 +26,12 @@ export const cli = async () => {
     }
   } else {
     // 命令行
-    config = program.config
+    config = {
+      output: program.output,
+      userId: program.userId,
+      cookie: program.cookie,
+      type: program.type,
+    }
   }
   info('运行配置：', JSON.stringify(config))
   await run(config)

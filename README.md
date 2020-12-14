@@ -44,6 +44,8 @@ hsync --config ./config.json
 }
 ```
 
+![example](assets/example.gif)
+
 #### 支持平台
 
 **csdn**

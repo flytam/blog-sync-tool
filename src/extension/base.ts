@@ -62,7 +62,7 @@ export abstract class Base<TConfig extends Config = Config> {
     return []
   }
 
-  async getDetail(id: string): Promise<ArticleItem> {
+  async getDetail(id: string | number): Promise<ArticleItem> {
     error('实现该方法')
     return null
   }

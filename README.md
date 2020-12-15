@@ -86,7 +86,12 @@ hsync --config ./config.json
 - output
   输出路径。默认`.`
 
-**腾讯云加社区** doing
+**腾讯云加社区**
+
+- userId
+  腾讯云加社区 id。如`https://cloud.tencent.com/developer/user/1132538/articles`的`1132538`
+- output
+  输出路径。默认`.`
 
 **github issue 写的博客** todo
 

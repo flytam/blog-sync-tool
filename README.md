@@ -60,7 +60,7 @@ hsync --config ./config.json
   - csdn cookie 信息，不提供则使用爬虫获取；提供则 api 获取
   - 获取方式：新开一个页面，`F12(mac: cmd+shift+i)`打开控制台，[点击](https://blog-console-api.csdn.net/v1/editor/getArticle?id=104101476)抓包这个请求的`request headers`中的`cookie`后面那段值
 
-**掘金** beta
+**掘金**
 
 - userId
   掘金用户 id。如`https://juejin.cn/user/289926799429704/posts`的`289926799429704`
@@ -70,16 +70,14 @@ hsync --config ./config.json
 - cookie
   掘金 cookie 信息。不提供使用非鉴权 api，部分老文章 markdown 格式可能有问题
 
-**鸦语** todo
-
-**博客园** beta
+**博客园**
 
 - userId
   博客园用户 id。如`https://www.cnblogs.com/flytam/`的`flytam`
 - output
   输出路径。默认`.`
 
-**segmentfault** beta
+**segmentfault**
 
 - userId
   segmentfault id。如`https://segmentfault.com/u/flytam`的`flytam`
@@ -95,14 +93,50 @@ hsync --config ./config.json
 
 **github issue 写的博客** todo
 
-#### TODO
+## 高级选项 beta
 
-- 部分平台有防盗链，需要支持一键转存图片
-- 测试
+#### 图片自动转存
+
+- imgConfig 图片转存配置文件
+
+部分网站有防盗链功能，支持配置自动转存，转存功能使用了[PicGo](https://github.com/Molunerfinn/PicGo)。具体配置可[参考 1](https://picgo.github.io/PicGo-Core-Doc/zh/guide/config.html#picbed-github) [参考 2](https://picgo.github.io/PicGo-Doc/zh/guide/config.html#github%E5%9B%BE%E5%BA%8A)
+
+例如：爬取掘金上的文章，图片转存上传到 github 上
+
+1、新建一个 PiGo 配置文件，如（更多配置请参考 picgo）
+
+```json
+// img.json
+{
+  "picBed": {
+    "uploader": "github",
+    "github": {
+      "repo": "flytam/cdn",
+      "token": "xxxxx",
+      "path": "img/"
+    }
+  }
+}
+```
+
+2、执行
+
+```bash
+hsync --config ./config.json
+{
+  "userId": "xxxx",
+  "type": "juejin",
+  "output": "./example",
+  "imgConfig": "./img.json"
+}
+```
+
+tips:网络原因呢转存 github 很容易超时。建议选择其它平台，参考 picgo
 
 ## Run tests
 
 ```sh
+# todo 简单测测
 npm run test
 ```
 

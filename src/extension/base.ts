@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { error, info } from '../log'
+import { transformImg } from '../utils'
 
 export interface ArticleItem {
   title: string
@@ -22,6 +23,7 @@ export interface Config {
    * cookie?
    */
   cookie?: string
+  imgConfig?: string
 }
 
 export abstract class Base<TConfig extends Config = Config> {
@@ -65,5 +67,14 @@ export abstract class Base<TConfig extends Config = Config> {
   async getDetail(id: string | number): Promise<ArticleItem> {
     error('实现该方法')
     return null
+  }
+
+  /**
+   * 生成文件后的操作
+   */
+  async generateSuccess(file: string[]) {
+    if (this.config.imgConfig) {
+      await transformImg.call(this, file)
+    }
   }
 }

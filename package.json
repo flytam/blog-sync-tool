@@ -25,6 +25,7 @@
     "commander": "^6.2.0",
     "filenamify": "^4.2.0",
     "fs-extra": "^9.0.1",
+    "picgo": "^1.4.12",
     "sitdown": "^1.1.6"
   },
   "devDependencies": {

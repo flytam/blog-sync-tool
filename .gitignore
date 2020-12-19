@@ -2,4 +2,7 @@ node_modules/
 example
 src/dev.ts
 config.json
+img.json
 dist/
+picgo.log
+log.md

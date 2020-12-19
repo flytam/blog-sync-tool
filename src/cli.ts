@@ -13,6 +13,10 @@ export const cli = async () => {
     .option('-o, --output [output]', '本地生成博客源md文件路径')
     .option('--userId [userId]', '用户id')
     .option('--cookie [cookie]', 'cookie信息')
+    .option(
+      '--imgConfig, [imgConfig]',
+      'beta: 图片转存配置文件路径，详情请参考 https://picgo.github.io/PicGo-Core-Doc/zh/guide/config.html#%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6'
+    )
     .option('--type [type]', '网站类型，例如csdn juejin等')
     .parse(process.argv)
 
@@ -31,6 +35,7 @@ export const cli = async () => {
       userId: program.userId,
       cookie: program.cookie,
       type: program.type,
+      imgConfig: program.imgConfig,
     }
   }
   info('运行配置：', JSON.stringify(config))

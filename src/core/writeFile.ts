@@ -6,15 +6,14 @@ import { error, info } from '../log'
 
 export const writeFile = (list: ArticleItem[], output = './') => {
   const dir = path.resolve(output)
+  const outputFile: string[] = []
   info('输出路径', dir)
   fs.ensureDirSync(dir)
   let writeStream: fs.WriteStream = null
   for (let { tags, title, categories, content, date } of list) {
+    const filename = path.join(dir, `./${filenamify(title)}.md`)
     try {
-      writeStream = fs.createWriteStream(
-        path.join(output, `./${filenamify(title)}.md`),
-        'utf8'
-      )
+      writeStream = fs.createWriteStream(filename, 'utf8')
       writeStream.write('---\n')
       writeStream.write(`title: ${title}\n`)
       writeStream.write(`date: ${date}\n`)
@@ -25,6 +24,7 @@ export const writeFile = (list: ArticleItem[], output = './') => {
       writeStream.write(content || '')
       writeStream.end('')
       writeStream.close()
+      outputFile.push(filename)
     } catch (e) {
       error(`出错: ${title}`, e)
     } finally {
@@ -33,4 +33,5 @@ export const writeFile = (list: ArticleItem[], output = './') => {
       }
     }
   }
+  return outputFile
 }

@@ -51,9 +51,9 @@ export abstract class Base<TConfig extends Config = Config> {
   async run() {
     const list = await this.getMain()
     const resultList: ArticleItem[] = []
-    for (let id of list) {
+    for (const id of list) {
       info(`拉取:${id}`)
-      let result = await this.getDetail(id)
+      const result = await this.getDetail(id)
       resultList.push(result)
     }
     return resultList

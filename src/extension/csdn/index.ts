@@ -37,9 +37,9 @@ export class Csdn extends Base {
     const idTimeMap = this.idTimeMap
     let i = 1
     const articleIds: number[] = []
-    while (i++) {
+    while (true) {
       const { data: html } = await axios.get(
-        `https://blog.csdn.net/${this.config.userId}/article/list/${i}`
+        `https://blog.csdn.net/${this.config.userId}/article/list/${i++}`
       )
       const $ = cheerio.load(html)
 

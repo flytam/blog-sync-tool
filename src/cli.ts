@@ -31,6 +31,7 @@ export const cli = async () => {
   } else {
     // 命令行
     config = {
+      ...program,
       output: program.output,
       userId: program.userId,
       cookie: program.cookie,

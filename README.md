@@ -17,7 +17,7 @@
   </a>
 </p>
 
-> 支持 csdn/博客园/掘金/segmentfault/腾讯云加社区等平台一键迁移 hexo
+> 支持 csdn/博客园/掘金/segmentfault/腾讯云加社区/github 等平台一键迁移 hexo
 
 ### 🏠 [Homepage](https://github.com/flytam/CsdnSyncHexo#readme)
 
@@ -91,7 +91,12 @@ hsync --config ./config.json
 - output
   输出路径。默认`.`
 
-**github issue 写的博客** todo
+**github issue 博客**
+
+- userId
+  githun 用户名，如`https://github.com/flytam`的 flytam
+- repo
+  写博客的仓库，如`https://github.com/flytam/blog`的 blog
 
 ## 高级选项 beta
 

@@ -1,6 +1,6 @@
 {
   "name": "csdnsynchexo",
-  "version": "3.0.5",
+  "version": "3.1.0",
   "description": "支持csdn/博客园/掘金/segmentfault/腾讯云加社区等平台一键迁移hexo",
   "main": "dist/index.js",
   "scripts": {

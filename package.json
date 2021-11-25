@@ -12,7 +12,7 @@
     "minor": "npm version minor"
   },
   "bin": {
-    "hsync": "./dist/index.js"
+    "hsync": "./dist/cli.js"
   },
   "directories": {
     "test": "tests"

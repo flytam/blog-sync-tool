@@ -30,6 +30,8 @@ npm i csdnsynchexo@latest
 
 ## Usage
 
+### cli 使用
+
 ```bash
 # help
 hsync --help
@@ -45,6 +47,29 @@ hsync --config ./config.json
 ```
 
 ![example](assets/example.gif)
+
+### api 使用
+
+```js
+const { run } = require('csdnsynchexo')
+const config = {
+  userId: '289926799429704',
+  type: 'juejin',
+  output: './example',
+}
+run(config).then((res) => {
+  console.log(res)
+  //   {
+  //   title: string
+  //   date: string
+  //   tags: string[]
+  //   categories: string[]
+  //   content: string
+  // }[]
+})
+```
+
+### 交互式输入 TODO
 
 #### 支持平台
 

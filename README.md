@@ -21,24 +21,17 @@
 
 ### 🏠 [Homepage](https://github.com/flytam/CsdnSyncHexo#readme)
 
-## Install
-
-```sh
-# > 3.0版本
-npm i csdnsynchexo@latest
-```
-
 ## Usage
 
 ### cli 使用
 
 ```bash
 # help
-hsync --help
+npx  --help
 # 命令行
-hsync --userId 289926799429704 --type juejin --output ./example
+npx csdnsynchexo@latest --userId 289926799429704 --type juejin --output ./example
 # or 指定配置文件
-hsync --config ./config.json
+npx csdnsynchexo@latest --config ./config.json
 {
   "userId": "289926799429704",
   "type": "juejin",
@@ -152,7 +145,7 @@ run(config).then((res) => {
 2、执行
 
 ```bash
-hsync --config ./config.json
+npx csdnsynchexo@latest --config ./config.json
 {
   "userId": "xxxx",
   "type": "juejin",

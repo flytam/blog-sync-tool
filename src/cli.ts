@@ -41,7 +41,13 @@ export const cli = async () => {
       imgConfig: program.imgConfig,
     }
   }
-  info('运行配置：', JSON.stringify(config))
+  info('运行配置：')
+  for (let [k, v] of Object.entries(config)) {
+    if (v) {
+      info(k, v)
+    }
+  }
+  info('\n')
   await run(config)
 }
 

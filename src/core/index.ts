@@ -2,7 +2,7 @@ import { extentions } from './config'
 import { writeFile } from './writeFile'
 
 export const run = async function <
-  T extends { type?: keyof typeof extentions } = unknown
+  T extends { type?: keyof typeof extentions } & Record<string, any> = unknown
 >(param: T, pure = false) {
   if (extentions[param.type]) {
     const extention = new extentions[param.type](param as any)

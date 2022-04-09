@@ -6,3 +6,4 @@ img.json
 dist/
 picgo.log
 log.md
+.DS_Store

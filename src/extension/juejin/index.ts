@@ -39,7 +39,7 @@ export class Juejin extends Base {
           draft_id: string
         }[]
         has_more: boolean
-      }>(`https://api.juejin.cn/content_api/v1/article/query_list`, {
+      }>('https://api.juejin.cn/content_api/v1/article/query_list', {
         cursor: String(cursor),
         sort_type: 2,
         user_id: this.config.userId,
@@ -94,7 +94,9 @@ export class Juejin extends Base {
       tags: tags.map((x) => x.tag_name),
       content: mark_content || sitdown.HTMLToMD(content),
       categories: [category?.category_name],
-      date: new Date(Number(ctime) * 1000).toLocaleString(),
+      date: new Date(Number(ctime) * 1000).toLocaleString('zh-CN', {
+        timeZone: 'Asia/Shanghai',
+      }),
     }
   }
 
@@ -124,7 +126,9 @@ export class Juejin extends Base {
     return {
       content: mark_content,
       title,
-      date: new Date(Number(ctime) * 1000).toLocaleString(),
+      date: new Date(Number(ctime) * 1000).toLocaleString('zh-CN', {
+        timeZone: 'Asia/Shanghai',
+      }),
       categories: [category_name],
       tags: tags.map((x) => x.tag_name),
     }
@@ -140,7 +144,7 @@ export class Juejin extends Base {
       info('无cookie')
     }
 
-    for (let id of list) {
+    for (const id of list) {
       info(`拉取:${id}`)
       let result: ArticleItem = null
 

@@ -52,7 +52,9 @@ export class Github extends Base<GithubConfig> {
     const item = this.articleMap[id]
     return {
       title: item.title,
-      date: new Date(item.created_at).toLocaleString(),
+      date: new Date(item.created_at).toLocaleString('zh-CN', {
+        timeZone: 'Asia/Shanghai',
+      }),
       tags: item.labels.map((x) => x.name),
       content: item.body,
       categories: item.labels.map((x) => x.name),

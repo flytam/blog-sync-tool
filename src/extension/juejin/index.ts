@@ -94,7 +94,7 @@ export class Juejin extends Base {
       tags: tags.map((x) => x.tag_name),
       content: mark_content || sitdown.HTMLToMD(content),
       categories: [category?.category_name],
-      date: new Date(Number(ctime) * 1000).toLocaleString('zh-CN', {
+      date: new Date(Number(ctime) * 1000).toLocaleString('en-US', {
         timeZone: 'Asia/Shanghai',
       }),
     }
@@ -126,7 +126,7 @@ export class Juejin extends Base {
     return {
       content: mark_content,
       title,
-      date: new Date(Number(ctime) * 1000).toLocaleString('zh-CN', {
+      date: new Date(Number(ctime) * 1000).toLocaleString('en-US', {
         timeZone: 'Asia/Shanghai',
       }),
       categories: [category_name],

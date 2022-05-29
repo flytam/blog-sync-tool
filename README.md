@@ -27,7 +27,7 @@
 
 ```bash
 # help
-npx  --help
+npx csdnsynchexo@latest  --help
 # 命令行
 npx csdnsynchexo@latest --userId 289926799429704 --type juejin --output ./example
 # or 指定配置文件

@@ -74,7 +74,11 @@ export abstract class Base<TConfig extends Config = Config> {
    */
   async generateSuccess(file: string[]) {
     if (this.config.imgConfig) {
-      await transformImg.call(this, file)
+      try {
+        await transformImg.call(this, file)
+      } catch (e) {
+        error('图片转存失败')
+      }
     }
   }
 }

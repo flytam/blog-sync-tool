@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Sitdown } from 'sitdown'
 import { catchCount } from '../../decorator'
 import { info } from '../../log'
+import { platform } from '../../decorator/platform'
 interface Config {
   /**
    * 用户
@@ -25,7 +26,8 @@ const sitdown = new Sitdown({
   hr: '---',
 })
 
-export class Juejin extends Base {
+@platform('juejin')
+export class Juejin extends Base<Config> {
   headers = {}
 
   async getMain() {

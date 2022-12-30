@@ -4,6 +4,7 @@ import { Sitdown } from 'sitdown'
 import cheerio from 'cheerio'
 import { url } from 'inspector'
 import { catchCount } from '../../decorator'
+import { platform } from '../../decorator/platform'
 
 const sitdown = new Sitdown({
   keepFilter: ['style'],
@@ -11,6 +12,8 @@ const sitdown = new Sitdown({
   bulletListMarker: '-',
   hr: '---',
 })
+
+@platform('segmentfault')
 export class Segmentfault extends Base {
   headers = {}
 

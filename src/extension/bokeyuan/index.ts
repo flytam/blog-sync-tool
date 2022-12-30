@@ -3,6 +3,7 @@ import axios from 'axios'
 import cheerio from 'cheerio'
 import { Sitdown } from 'sitdown'
 import { catchCount } from '../../decorator'
+import { platform } from '../../decorator/platform'
 
 const sitdown = new Sitdown({
   keepFilter: ['style'],
@@ -10,8 +11,8 @@ const sitdown = new Sitdown({
   bulletListMarker: '-',
   hr: '---',
 })
-
-export class Bokeyuan extends Base {
+@platform('bokeyuan')
+class Bokeyuan extends Base {
   headers = {}
 
   @catchCount()

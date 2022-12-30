@@ -4,13 +4,15 @@ import cheerio from 'cheerio'
 import { Sitdown } from 'sitdown'
 import { catchCount, throttle } from '../../decorator'
 import { info } from '../../log'
+import { platform } from '../../decorator/platform'
+
 const sitdown = new Sitdown({
   keepFilter: ['style'],
   codeBlockStyle: 'fenced',
   bulletListMarker: '-',
   hr: '---',
 })
-
+@platform('csdn')
 export class Csdn extends Base {
   headers = {
     'user-agent':

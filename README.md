@@ -19,8 +19,6 @@
 
 > 支持 csdn/博客园/掘金/segmentfault/腾讯云加社区/github 等平台一键迁移 hexo
 
-### 🏠 [Homepage](https://github.com/flytam/CsdnSyncHexo#readme)
-
 ## Usage
 
 ### cli 使用
@@ -67,7 +65,7 @@ run(config).then((res) => {
 #### 支持平台
 
 **csdn**
-
+- type csdn
 - userId
   csdn 用户名。如`https://blog.csdn.net/flytam`的 flytam
 
@@ -79,7 +77,7 @@ run(config).then((res) => {
   - 获取方式：新开一个页面，`F12(mac: cmd+shift+i)`打开控制台，[点击](https://blog-console-api.csdn.net/v1/editor/getArticle?id=104101476)抓包这个请求的`request headers`中的`cookie`后面那段值
 
 **掘金**
-
+- type juejin
 - userId
   掘金用户 id。如`https://juejin.cn/user/289926799429704/posts`的`289926799429704`
 - output
@@ -89,32 +87,38 @@ run(config).then((res) => {
   掘金 cookie 信息。不提供使用非鉴权 api，部分老文章 markdown 格式可能有问题
 
 **博客园**
-
+- type bokeyuan
 - userId
   博客园用户 id。如`https://www.cnblogs.com/flytam/`的`flytam`
 - output
   输出路径。默认`.`
 
 **segmentfault**
-
+- type segmentfault
 - userId
   segmentfault id。如`https://segmentfault.com/u/flytam`的`flytam`
 - output
   输出路径。默认`.`
 
 **腾讯云加社区**
-
+- type tengxunyun
 - userId
   腾讯云加社区 id。如`https://cloud.tencent.com/developer/user/1132538/articles`的`1132538`
 - output
   输出路径。默认`.`
 
 **github issue 博客**
-
+- type github
 - userId
   githun 用户名，如`https://github.com/flytam`的 flytam
 - repo
   写博客的仓库，如`https://github.com/flytam/blog`的 blog
+
+  **掘金小册**
+- type juejin_book
+- userId 掘金小册id，如https://juejin.cn/book/7070324244772716556 的7070324244772716556
+- cookie 掘金已购买小册的账号cookie信息
+
 
 ## 高级选项 beta
 

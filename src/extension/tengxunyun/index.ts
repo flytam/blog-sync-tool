@@ -3,6 +3,7 @@ import { catchCount } from '../../decorator'
 import { Base } from '../base'
 import cheerio from 'cheerio'
 import { Sitdown } from 'sitdown'
+import { platform } from '../../decorator/platform'
 
 const sitdown = new Sitdown({
   keepFilter: ['style'],
@@ -11,6 +12,7 @@ const sitdown = new Sitdown({
   hr: '---',
 })
 
+@platform('tengxunyun')
 export class Tengxunyun extends Base {
   headers = {}
   articleMap = new Map<

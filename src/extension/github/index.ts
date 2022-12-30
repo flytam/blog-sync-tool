@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { ArticleItem, Base, Config } from '../base'
 import { info } from '../../log'
+import { platform } from '../../decorator/platform'
 
 interface GithubConfig extends Config {
   /**
@@ -23,7 +24,7 @@ interface Issue {
   updated_at: string
   body: string
 }
-
+@platform('github')
 export class Github extends Base<GithubConfig> {
   headers = {}
 

@@ -27,16 +27,25 @@ export class JuejinBook extends Base<Config> {
     // 'content-type': 'application/json'
   }
 
+  bookTitle = ''
+
   async getMain() {
     const { data, config } = await axios.post<{
       data: {
         sections: {
           section_id: number
         }[]
+        booklet: {
+          base_info: {
+            title: string
+          }
+        }
       }
     }>('https://api.juejin.cn/booklet_api/v1/booklet/get', {
       booklet_id: `${this.config.userId}`,
     })
+
+    this.bookTitle = data?.data?.booklet?.base_info?.title
 
     return data?.data?.sections.map((x) => x.section_id)
   }
@@ -57,9 +66,9 @@ export class JuejinBook extends Base<Config> {
 
     return {
       title: data?.data?.section?.title,
-      tags: [],
+      tags: this.bookTitle ? [this.bookTitle] : [],
       content: data?.data?.section?.markdown_show,
-      categories: [],
+      categories: this.bookTitle ? [this.bookTitle] : [],
       date: new Date(Number(data?.data?.section?.ctime) * 1000).toLocaleString(
         'en-US',
         {

@@ -1,5 +1,4 @@
 import { ArticleItem, Base } from '../base'
-import axios from 'axios'
 import { catchCount } from '../../decorator'
 import { platform } from '../../decorator/platform'
 
@@ -30,7 +29,7 @@ export class JuejinBook extends Base<Config> {
   bookTitle = ''
 
   async getMain() {
-    const { data, config } = await axios.post<{
+    const { data, config } = await this.axios.post<{
       data: {
         sections: {
           section_id: number
@@ -52,7 +51,7 @@ export class JuejinBook extends Base<Config> {
 
   @catchCount()
   async getDetail(id: string): Promise<ArticleItem> {
-    const { data } = await axios.post<{
+    const { data } = await this.axios.post<{
       data: {
         section: {
           markdown_show: string

@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { ArticleItem, Base, Config } from '../base'
 import cheerio from 'cheerio'
 import { Sitdown } from 'sitdown'
@@ -40,7 +39,7 @@ export class Csdn extends Base {
     let i = 1
     const articleIds: number[] = []
     while (true) {
-      const { data: html } = await axios.get(
+      const { data: html } = await this.axios.get(
         `https://blog.csdn.net/${this.config.userId}/article/list/${i++}`
       )
       const $ = cheerio.load(html)
@@ -67,7 +66,7 @@ export class Csdn extends Base {
   @throttle(1000)
   @catchCount()
   async getByPage(id: number): Promise<ArticleItem> {
-    const { data: html } = await axios.get(
+    const { data: html } = await this.axios.get(
       `https://blog.csdn.net/${this.config.userId}/article/details/${id}`
     )
 
@@ -116,7 +115,7 @@ export class Csdn extends Base {
           title,
         },
       },
-    } = await axios.get<{
+    } = await this.axios.get<{
       data: {
         markdowncontent: string
         content: string

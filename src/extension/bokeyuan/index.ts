@@ -1,5 +1,4 @@
 import { ArticleItem, Base } from '../base'
-import axios from 'axios'
 import cheerio from 'cheerio'
 import { Sitdown } from 'sitdown'
 import { catchCount } from '../../decorator'
@@ -17,7 +16,7 @@ class Bokeyuan extends Base {
 
   @catchCount()
   async getDetail(url: string): Promise<ArticleItem> {
-    const { data: html } = await axios.get(
+    const { data: html } = await this.axios.get(
       //   `https://www.cnblogs.com/${this.config.userId}/p/${id}.html`
       url
     )
@@ -49,7 +48,7 @@ class Bokeyuan extends Base {
     const urls: string[] = []
 
     while (true) {
-      const { data: html } = await axios.get(
+      const { data: html } = await this.axios.get(
         `https://www.cnblogs.com/${
           this.config.userId
         }/default.html?page=${page++}`

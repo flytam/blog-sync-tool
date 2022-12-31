@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { ArticleItem, Base, Config } from '../base'
 import { info } from '../../log'
 import { platform } from '../../decorator/platform'
@@ -33,7 +32,7 @@ export class Github extends Base<GithubConfig> {
   async getMain() {
     const { config } = this
 
-    const { data } = await axios.get<Issue[]>(
+    const { data } = await this.axios.get<Issue[]>(
       `https://api.github.com/repos/${config.userId}/${config.repo}/issues`
     )
     const ids: number[] = []

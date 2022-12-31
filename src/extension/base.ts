@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios, { AxiosInstance } from 'axios'
 import { error, info } from '../log'
 import { transformImg } from '../utils'
 
@@ -34,9 +34,12 @@ export abstract class Base<TConfig extends Config = Config> {
    */
   protected abstract headers: Record<string, string>
 
+  axios: AxiosInstance
+
   constructor(config: TConfig) {
     this.config = config
-    axios.interceptors.request.use((c) => {
+    this.axios = axios.create()
+    this.axios.interceptors.request.use((c) => {
       info(`request: ${c.method} ${c.url}`)
       if (config.cookie) {
         Object.assign(this.headers, {

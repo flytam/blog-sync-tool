@@ -1,5 +1,4 @@
 import { ArticleItem, Base } from '../base'
-import axios from 'axios'
 import { Sitdown } from 'sitdown'
 import { catchCount } from '../../decorator'
 import { info } from '../../log'
@@ -34,7 +33,7 @@ export class Juejin extends Base<Config> {
     const articleIds: string[] = []
     let cursor = 0
     while (true) {
-      const { data: res } = await axios.post<{
+      const { data: res } = await this.axios.post<{
         err_no: number
         data: {
           article_id: string
@@ -73,7 +72,7 @@ export class Juejin extends Base<Config> {
           category,
         },
       },
-    } = await axios.post<{
+    } = await this.axios.post<{
       data: {
         category: {
           category_name: string
@@ -112,7 +111,7 @@ export class Juejin extends Base<Config> {
           tags,
         },
       },
-    } = await axios.post<{
+    } = await this.axios.post<{
       data: {
         article_draft: {
           mark_content: string

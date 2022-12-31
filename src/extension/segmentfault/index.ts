@@ -1,5 +1,4 @@
 import { ArticleItem, Base } from '../base'
-import axios from 'axios'
 import { Sitdown } from 'sitdown'
 import cheerio from 'cheerio'
 import { url } from 'inspector'
@@ -19,7 +18,9 @@ export class Segmentfault extends Base {
 
   @catchCount()
   async getDetail(url: string): Promise<ArticleItem> {
-    const { data: html } = await axios.get(`https://segmentfault.com${url}`)
+    const { data: html } = await this.axios.get(
+      `https://segmentfault.com${url}`
+    )
     const $ = cheerio.load(html)
 
     const content = sitdown.HTMLToMD($('.article').html())
@@ -45,7 +46,7 @@ export class Segmentfault extends Base {
     const urls: string[] = []
     let emptyBreak = false
     while (true) {
-      const { data: html } = await axios.get(
+      const { data: html } = await this.axios.get(
         `https://segmentfault.com/u/${
           this.config.userId
         }/articles?page=${page++}`

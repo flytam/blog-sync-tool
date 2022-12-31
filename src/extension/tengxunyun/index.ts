@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { catchCount } from '../../decorator'
 import { Base } from '../base'
 import cheerio from 'cheerio'
@@ -28,7 +27,7 @@ export class Tengxunyun extends Base {
     let page = 1
     let ids: number[] = []
     while (true) {
-      const { data: res } = await axios.post<{
+      const { data: res } = await this.axios.post<{
         code: number
         data: {
           list: {
@@ -71,7 +70,7 @@ export class Tengxunyun extends Base {
 
   @catchCount()
   async getDetail(id: number) {
-    const { data: html } = await axios.get(
+    const { data: html } = await this.axios.get(
       ` https://cloud.tencent.com/developer/article/${id} `
     )
 

@@ -55,6 +55,7 @@ export class JuejinBook extends Base<Config> {
       data: {
         section: {
           markdown_show: string
+          content: string
           title: string
           ctime: number
         }
@@ -66,7 +67,8 @@ export class JuejinBook extends Base<Config> {
     return {
       title: data?.data?.section?.title,
       tags: this.bookTitle ? [this.bookTitle] : [],
-      content: data?.data?.section?.markdown_show,
+      content:
+        data?.data?.section?.markdown_show || data?.data?.section?.content,
       categories: this.bookTitle ? [this.bookTitle] : [],
       date: new Date(Number(data?.data?.section?.ctime) * 1000).toLocaleString(
         'en-US',

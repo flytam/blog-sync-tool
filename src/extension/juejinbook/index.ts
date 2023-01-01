@@ -1,6 +1,14 @@
 import { ArticleItem, Base } from '../base'
 import { catchCount } from '../../decorator'
 import { platform } from '../../decorator/platform'
+import { Sitdown } from 'sitdown'
+
+const sitdown = new Sitdown({
+  keepFilter: ['style'],
+  codeBlockStyle: 'fenced',
+  bulletListMarker: '-',
+  hr: '---',
+})
 
 interface Config {
   /**
@@ -68,7 +76,8 @@ export class JuejinBook extends Base<Config> {
       title: data?.data?.section?.title,
       tags: this.bookTitle ? [this.bookTitle] : [],
       content:
-        data?.data?.section?.markdown_show || data?.data?.section?.content,
+        data?.data?.section?.markdown_show ||
+        sitdown.HTMLToMD(data?.data?.section?.content ?? ''),
       categories: this.bookTitle ? [this.bookTitle] : [],
       date: new Date(Number(data?.data?.section?.ctime) * 1000).toLocaleString(
         'en-US',

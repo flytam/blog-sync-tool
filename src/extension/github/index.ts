@@ -31,19 +31,30 @@ export class Github extends Base<GithubConfig> {
 
   async getMain() {
     const { config } = this
-
-    const { data } = await this.axios.get<Issue[]>(
-      `https://api.github.com/repos/${config.userId}/${config.repo}/issues`
-    )
     const ids: number[] = []
 
-    for (const item of data) {
-      if (item.user.login !== config.userId) {
-        continue
+    let index = 1
+
+    while (true) {
+      const { data } = await this.axios.get<Issue[]>(
+        `https://api.github.com/repos/${config.userId}/${config.repo}/issues?per_page=100&page=${index}`
+      )
+
+      if (!data.length) {
+        break
       }
-      ids.push(item.id)
-      this.articleMap[item.id] = item
+
+      index++
+
+      for (const item of data) {
+        if (item.user.login !== config.userId) {
+          continue
+        }
+        ids.push(item.id)
+        this.articleMap[item.id] = item
+      }
     }
+
     info('获取github数据完成')
     return ids
   }

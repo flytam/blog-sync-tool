@@ -80,7 +80,7 @@ export abstract class Base<TConfig extends Config = Config> {
       try {
         await transformImg.call(this, file)
       } catch (e) {
-        error('图片转存失败')
+        error('图片转存失败', e)
       }
     }
   }

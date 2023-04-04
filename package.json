@@ -4,7 +4,7 @@
   "description": "支持csdn/博客园/掘金/segmentfault/腾讯云加社区等平台一键迁移hexo",
   "main": "dist/index.js",
   "scripts": {
-    "dev": "npm run build && node ./dist/cli.js --config ./config.json",
+    "dev": "export ENV=DEBUG && npm run build && node ./dist/cli.js --config ./config.json",
     "build": "rm -rf ./dist && tsc",
     "prepublish": "npm run build",
     "patch": "npm version patch",
@@ -26,7 +26,7 @@
     "filenamify": "^4.2.0",
     "fs-extra": "^9.0.1",
     "glob": "^8.0.3",
-    "picgo": "^1.4.12",
+    "picgo": "^1.5.0",
     "sitdown": "^1.1.6"
   },
   "devDependencies": {

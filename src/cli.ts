@@ -40,6 +40,7 @@ export const cli = async () => {
       imgConfig: program.imgConfig,
     }
   }
+  info('版本', require('../package.json').version)
   info('运行配置：')
   for (let [k, v] of Object.entries(config)) {
     if (v) {

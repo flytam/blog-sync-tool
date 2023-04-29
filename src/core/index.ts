@@ -25,6 +25,6 @@ export const run = async function <T extends Record<string, any> = unknown>(
 
     return list
   } else {
-    throw new Error('invalid type')
+    throw new Error(`invalid type: ${param.type}, Please check`)
   }
 }

@@ -2,7 +2,7 @@ import { ArticleItem } from '../extension/base'
 import fs from 'fs-extra'
 import path from 'path'
 import filenamify from 'filenamify'
-import { error, info } from '../log'
+import { debug, error, info } from '../log'
 
 export const writeFile = (list: ArticleItem[], output = './') => {
   const dir = path.resolve(output)
@@ -10,7 +10,12 @@ export const writeFile = (list: ArticleItem[], output = './') => {
   info('输出路径', dir)
   fs.ensureDirSync(dir)
   let writeStream: fs.WriteStream = null
-  for (let { tags, title, categories, content, date } of list) {
+
+  for (let item of list) {
+    if (!item) {
+      continue
+    }
+    const { tags, title, categories, content, date } = item
     const filename = path.join(dir, `./${filenamify(title)}.md`)
     try {
       writeStream = fs.createWriteStream(filename, 'utf8')

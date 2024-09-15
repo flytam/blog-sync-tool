@@ -35,13 +35,10 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.0",
     "@types/glob": "^8.0.0",
-    "@types/jest": "^26.0.19",
     "@types/node": "^18.0.0",
     "husky": "^9.1.6",
-    "jest": "^26.6.3",
     "prettier": "^3.3.3",
     "pretty-quick": "^4.0.0",
-    "ts-jest": "^26.4.4",
     "tsx": "^4.19.1",
     "typescript": "^5.5.3"
   },

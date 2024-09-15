@@ -1,8 +1,7 @@
-import { ArticleItem, Base } from '../base'
-import cheerio from 'cheerio'
+import { ArticleItem, Base } from '../base.js'
+import { load } from 'cheerio'
 import { Sitdown } from 'sitdown'
-import { catchCount } from '../../decorator'
-import { platform } from '../../decorator/platform'
+import { catchCount } from '../../decorator/index.js'
 
 const sitdown = new Sitdown({
   keepFilter: ['style'],
@@ -10,18 +9,18 @@ const sitdown = new Sitdown({
   bulletListMarker: '-',
   hr: '---',
 })
-@platform('bokeyuan')
-class Bokeyuan extends Base {
+
+export class Bokeyuan extends Base {
   headers = {}
 
   @catchCount()
   async getDetail(url: string): Promise<ArticleItem> {
     const { data: html } = await this.axios.get(
       //   `https://www.cnblogs.com/${this.config.userId}/p/${id}.html`
-      url
+      url,
     )
-    const $ = cheerio.load(html)
-    const content = sitdown.HTMLToMD($('#cnblogs_post_body').html())
+    const $ = load(html)
+    const content = sitdown.HTMLToMD($('#cnblogs_post_body').html() as string)
     const title = $('.postTitle .postTitle2 span').text()
     const date = $('#post-date').text()
     const categories: string[] = []
@@ -51,9 +50,9 @@ class Bokeyuan extends Base {
       const { data: html } = await this.axios.get(
         `https://www.cnblogs.com/${
           this.config.userId
-        }/default.html?page=${page++}`
+        }/default.html?page=${page++}`,
       )
-      const $ = cheerio.load(html)
+      const $ = load(html)
       const list = $('.postTitle .postTitle2')
 
       if (list?.length > 0) {

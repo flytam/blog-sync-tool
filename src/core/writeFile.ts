@@ -1,15 +1,15 @@
-import { ArticleItem } from '../extension/base'
+import { ArticleItem } from '../extension/base.js'
 import fs from 'fs-extra'
 import path from 'path'
 import filenamify from 'filenamify'
-import { debug, error, info } from '../log'
+import { debug, error, info } from '../log/index.js'
 
 export const writeFile = (list: ArticleItem[], output = './') => {
   const dir = path.resolve(output)
   const outputFile: string[] = []
   info('输出路径', dir)
   fs.ensureDirSync(dir)
-  let writeStream: fs.WriteStream = null
+  let writeStream: fs.WriteStream | undefined
 
   for (let item of list) {
     if (!item) {

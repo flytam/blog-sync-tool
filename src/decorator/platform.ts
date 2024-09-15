@@ -1,21 +1,31 @@
-import glob from 'glob'
-import { join } from 'path'
-import { info } from '../log'
+import { debug, info } from '../log/index.js'
 
-const platformMap: Record<string, FunctionConstructor> = {}
+//...
+import { Tengxunyun } from '../extension/tengxunyun/index.js'
+import { Segmentfault } from '../extension/segmentfault/index.js'
+import { Juejin } from '../extension/juejin/index.js'
+import { JuejinBook } from '../extension/juejinbook/index.js'
+import { Github } from '../extension/github/index.js'
+import { Csdn } from '../extension/csdn/index.js'
+import { Bokeyuan } from '../extension/bokeyuan/index.js'
 
-export function platform(name: string) {
-  return function (target: any) {
-    platformMap[name] = target
-  }
+let platformMap: Record<string, any> = {
+  Tengxunyun,
+  Segmentfault,
+  Juejin,
+  JuejinBook,
+  Github,
+  Csdn,
+  Bokeyuan,
 }
 
 export async function initPlatformExtension() {
-  const files = glob.sync(join(__dirname, '../extension/**/*.js'))
-  files.forEach((file) => {
-    require(file)
-    info(`Loaded extension ${file}`)
-  })
+  platformMap = Object.keys(platformMap).reduce<Record<string, any>>((m, k) => {
+    m[k.toLowerCase()] = platformMap[k]
+    return m
+  }, {})
+
+  debug('平台\n', Object.keys(platformMap).join('\n'))
 
   return platformMap
 }

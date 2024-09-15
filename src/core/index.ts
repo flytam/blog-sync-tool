@@ -1,16 +1,20 @@
-import { initPlatformExtension } from '../decorator/platform'
-import { Base } from '../extension/base'
-import { writeFile } from './writeFile'
+import { initPlatformExtension } from '../decorator/platform.js'
+import { Base } from '../extension/base.js'
+import { success } from '../log/index.js'
+import { writeFile } from './writeFile.js'
 
-export const run = async function <T extends Record<string, any> = unknown>(
+export const run = async function <T extends Record<string, any> = any>(
   param: T,
-  pure = false
+  pure = false,
 ) {
   const extensions = await initPlatformExtension()
+
+  success(`加载插件完成 ${Object.keys(extensions).join(',')}`)
+
   if (extensions[param.type]) {
-    const extension = (new extensions[param.type](
-      param as any
-    ) as unknown) as Base
+    const extension = new extensions[param.type](
+      param as any,
+    ) as unknown as Base
     const list = await extension.run()
 
     if (pure) {

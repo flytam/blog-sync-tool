@@ -1,6 +1,5 @@
-import { ArticleItem, Base, Config } from '../base'
-import { info } from '../../log'
-import { platform } from '../../decorator/platform'
+import { ArticleItem, Base, Config } from '../base.js'
+import { info } from '../../log/index.js'
 
 interface GithubConfig extends Config {
   /**
@@ -23,7 +22,7 @@ interface Issue {
   updated_at: string
   body: string
 }
-@platform('github')
+
 export class Github extends Base<GithubConfig> {
   headers = {}
 
@@ -37,7 +36,7 @@ export class Github extends Base<GithubConfig> {
 
     while (true) {
       const { data } = await this.axios.get<Issue[]>(
-        `https://api.github.com/repos/${config.userId}/${config.repo}/issues?per_page=100&page=${index}`
+        `https://api.github.com/repos/${config.userId}/${config.repo}/issues?per_page=100&page=${index}`,
       )
 
       if (!data.length) {
@@ -66,9 +65,9 @@ export class Github extends Base<GithubConfig> {
       date: new Date(item.created_at).toLocaleString('en-US', {
         timeZone: 'Asia/Shanghai',
       }),
-      tags: item.labels.map((x) => x.name),
+      tags: item.labels?.map((x) => x.name) ?? [],
       content: item.body,
-      categories: item.labels.map((x) => x.name),
+      categories: item.labels?.map((x) => x.name) ?? [],
     }
   }
 }

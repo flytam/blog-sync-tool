@@ -3,21 +3,22 @@
 import program from 'commander'
 
 import path from 'path'
-import { run } from './core'
-import { error, info } from './log'
+import { run } from './core/index.js'
+import { error, info } from './log/index.js'
 // cli
-const { version } = require('../package.json')
+import pkg from '../package.json' assert { type: 'json' }
+import fs from 'fs-extra'
 
 export const cli = async () => {
   program
-    .version(version)
+    .version(pkg.version)
     .option('-c, --config [config]', '配置文件相对路径')
     .option('-o, --output [output]', '本地生成博客源md文件路径')
     .option('--userId [userId]', '用户id')
     .option('--cookie [cookie]', 'cookie信息')
     .option(
       '--imgConfig, [imgConfig]',
-      'beta: 图片转存配置文件路径，详情请参考 https://picgo.github.io/PicGo-Core-Doc/zh/guide/config.html#%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6'
+      'beta: 图片转存配置文件路径，详情请参考 https://picgo.github.io/PicGo-Core-Doc/zh/guide/config.html#%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6',
     )
     .option('--type [type]', '网站类型，例如csdn juejin等')
     .parse(process.argv)
@@ -26,7 +27,8 @@ export const cli = async () => {
   if (program.config) {
     // 配置文件
     try {
-      config = require(path.resolve(process.cwd(), program.config))
+      const configPath = path.resolve(process.cwd(), program.config)
+      config = await fs.readJson(configPath)
     } catch (e) {
       error(e)
     }
@@ -40,7 +42,7 @@ export const cli = async () => {
       imgConfig: program.imgConfig,
     }
   }
-  info('版本', require('../package.json').version)
+  info('版本', pkg.version)
   info('运行配置：')
   for (let [k, v] of Object.entries(config)) {
     if (v) {

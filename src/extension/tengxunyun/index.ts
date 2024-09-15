@@ -1,8 +1,7 @@
-import { catchCount } from '../../decorator'
-import { Base } from '../base'
-import cheerio from 'cheerio'
+import { catchCount } from '../../decorator/index.js'
+import { Base } from '../base.js'
+import { load } from 'cheerio'
 import { Sitdown } from 'sitdown'
-import { platform } from '../../decorator/platform'
 
 const sitdown = new Sitdown({
   keepFilter: ['style'],
@@ -11,7 +10,6 @@ const sitdown = new Sitdown({
   hr: '---',
 })
 
-@platform('tengxunyun')
 export class Tengxunyun extends Base {
   headers = {}
   articleMap = new Map<
@@ -47,7 +45,7 @@ export class Tengxunyun extends Base {
             pageSize: 20,
             uid: this.config.userId,
           },
-        }
+        },
       )
 
       if (res.code === 0 && res.data?.list.length > 0) {
@@ -71,14 +69,14 @@ export class Tengxunyun extends Base {
   @catchCount()
   async getDetail(id: number) {
     const { data: html } = await this.axios.get(
-      ` https://cloud.tencent.com/developer/article/${id} `
+      ` https://cloud.tencent.com/developer/article/${id} `,
     )
 
-    const $ = cheerio.load(html, {
-      decodeEntities: true,
+    const $ = load(html, {
+      // decodeEntities: true,
     })
-    const content = sitdown.HTMLToMD($('.com-markdown-collpase').html())
-    const item = this.articleMap.get(id)
+    const content = sitdown.HTMLToMD($('.com-markdown-collpase').html()!)
+    const item = this.articleMap.get(id)!
     return {
       content,
       ...item,

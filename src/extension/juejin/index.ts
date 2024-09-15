@@ -1,8 +1,8 @@
-import { ArticleItem, Base } from '../base'
+import { ArticleItem, Base } from '../base.js'
 import { Sitdown } from 'sitdown'
-import { catchCount } from '../../decorator'
-import { info } from '../../log'
-import { platform } from '../../decorator/platform'
+import { catchCount } from '../../decorator/index.js'
+import { info } from '../../log/index.js'
+
 interface Config {
   /**
    * 用户
@@ -25,7 +25,6 @@ const sitdown = new Sitdown({
   hr: '---',
 })
 
-@platform('juejin')
 export class Juejin extends Base<Config> {
   headers = {}
 
@@ -50,7 +49,7 @@ export class Juejin extends Base<Config> {
 
       if (err_no === 0 && data) {
         articleIds.push(
-          ...data.map((x) => (this.config.cookie ? x.draft_id : x.article_id))
+          ...data.map((x) => (this.config.cookie ? x.draft_id : x.article_id)),
         )
       }
       if (has_more) {
@@ -147,7 +146,7 @@ export class Juejin extends Base<Config> {
 
     for (const id of list) {
       info(`拉取:${id}`)
-      let result: ArticleItem = null
+      let result: ArticleItem | undefined
 
       if (this.config.cookie) {
         result = await this.getDetail2(id)

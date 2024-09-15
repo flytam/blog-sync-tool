@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
-import { error, info } from '../log'
-import { transformImg } from '../utils'
+import { error, info } from '../log/index.js'
+import { transformImg } from '../utils/index.js'
 
 export interface ArticleItem {
   title: string
@@ -57,7 +57,9 @@ export abstract class Base<TConfig extends Config = Config> {
     for (const id of list) {
       info(`拉取:${id}`)
       const result = await this.getDetail(id)
-      resultList.push(result)
+      if (result) {
+        resultList.push(result)
+      }
     }
     return resultList
   }
@@ -67,9 +69,9 @@ export abstract class Base<TConfig extends Config = Config> {
     return []
   }
 
-  async getDetail(id: string | number): Promise<ArticleItem> {
+  async getDetail(id: string | number): Promise<ArticleItem | undefined> {
     error('实现该方法')
-    return null
+    return undefined
   }
 
   /**

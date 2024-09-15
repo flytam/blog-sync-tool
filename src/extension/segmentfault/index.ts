@@ -1,9 +1,7 @@
-import { ArticleItem, Base } from '../base'
+import { ArticleItem, Base } from '../base.js'
 import { Sitdown } from 'sitdown'
-import cheerio from 'cheerio'
-import { url } from 'inspector'
-import { catchCount } from '../../decorator'
-import { platform } from '../../decorator/platform'
+import { load } from 'cheerio'
+import { catchCount } from '../../decorator/index.js'
 
 const sitdown = new Sitdown({
   keepFilter: ['style'],
@@ -12,19 +10,18 @@ const sitdown = new Sitdown({
   hr: '---',
 })
 
-@platform('segmentfault')
 export class Segmentfault extends Base {
   headers = {}
 
   @catchCount()
   async getDetail(url: string): Promise<ArticleItem> {
     const { data: html } = await this.axios.get(
-      `https://segmentfault.com${url}`
+      `https://segmentfault.com${url}`,
     )
-    const $ = cheerio.load(html)
+    const $ = load(html)
 
-    const content = sitdown.HTMLToMD($('.article').html())
-    const date = $('time').attr('datetime')
+    const content = sitdown.HTMLToMD($('.article').html() as string)
+    const date = $('time').attr('datetime')!
     const tags: string[] = []
     const title = $('#sf-article_title .text-body').text()
 
@@ -49,13 +46,13 @@ export class Segmentfault extends Base {
       const { data: html } = await this.axios.get(
         `https://segmentfault.com/u/${
           this.config.userId
-        }/articles?page=${page++}`
+        }/articles?page=${page++}`,
       )
 
       if (emptyBreak) {
         break
       }
-      const $ = cheerio.load(html)
+      const $ = load(html)
 
       const list = $('.profile-mine__content--title')
 

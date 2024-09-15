@@ -1,7 +1,7 @@
 import { IImgInfo, PicGo } from 'picgo'
 import fs from 'fs-extra'
-import { Base } from '../extension/base'
-import { debug, error, info, success, warn } from '../log'
+import { Base } from '../extension/base.js'
+import { debug, error, info, warn } from '../log/index.js'
 import { basename, extname } from 'path'
 
 const helpUpload = async (imgConfig: string, imgs: string[]) => {
@@ -12,8 +12,8 @@ const helpUpload = async (imgConfig: string, imgs: string[]) => {
       handle: function (ctx) {
         ctx.output.forEach((x) => {
           debug('fileName', x.fileName)
-          const ext = extname(x.fileName)
-          const name = basename(x.fileName, ext)
+          const ext = extname(x.fileName!)
+          const name = basename(x.fileName!, ext)
           return (x.fileName = `${name}_${Date.now()}${ext}`)
         })
       },
@@ -36,7 +36,7 @@ const helpUpload = async (imgConfig: string, imgs: string[]) => {
     const output = (await picgo.upload(imgs)) as IImgInfo[]
 
     output.forEach((img, i) => {
-      map[imgs[i]] = img.imgUrl
+      map[imgs[i]] = img.imgUrl!
     })
 
     resolve(map)
@@ -55,7 +55,7 @@ export const transformImg = async function (this: Base, files: string[]) {
   for (let file of files) {
     const content = fs.readFileSync(file, 'utf8')
     const urls = content.match(/\!\[.*\]\(.*\)/g)?.map((i) => {
-      const url = i.match(/\!\[.*\]\((.*?)( ".*")?\)/)[1]
+      const url = i.match(/\!\[.*\]\((.*?)( ".*")?\)/)![1]
       return url
     })
     if (urls) {
@@ -84,8 +84,8 @@ export const transformImg = async function (this: Base, files: string[]) {
       info(`转存中: ${i}/${upload.length}...`)
       info(upload.slice(i, i + length).join('\n'))
       const result = await helpUpload(
-        this.config.imgConfig,
-        upload.slice(i, i + length)
+        this.config.imgConfig!,
+        upload.slice(i, i + length),
       )
       Object.assign(originNewMap, result)
     } catch (e) {
@@ -99,7 +99,7 @@ export const transformImg = async function (this: Base, files: string[]) {
   for (let file of files) {
     let content = fs.readFileSync(file, 'utf8')
     const urls = content.match(/\!\[.*\]\(.*\)/g)?.map((i) => {
-      const url = i.match(/\!\[.*\]\((.*?)( ".*")?\)/)[1]
+      const url = i.match(/\!\[.*\]\((.*?)( ".*")?\)/)![1]
       return url
     })
 

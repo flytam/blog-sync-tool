@@ -1,2 +1,2 @@
-export { catchCount } from './catchCount'
-export { throttle } from './throttle'
+export { catchCount } from './catchCount.js'
+export { throttle } from './throttle.js'

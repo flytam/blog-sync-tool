@@ -1,4 +1,4 @@
-import { error, success } from '../log'
+import { error, success } from '../log/index.js'
 
 export const successKey = Symbol('success')
 export const failKey = Symbol('fail')
@@ -7,7 +7,7 @@ export const catchCount = () => {
   return function (
     target: any,
     propertyKey: string,
-    descriptor: PropertyDescriptor
+    descriptor: PropertyDescriptor,
   ) {
     const origin: Function = descriptor?.value
     target[successKey] = 0

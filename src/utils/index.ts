@@ -1,1 +1,1 @@
-export { transformImg } from './transformImg'
+export { transformImg } from './transformImg.js'

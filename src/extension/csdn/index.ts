@@ -1,9 +1,8 @@
-import { ArticleItem, Base, Config } from '../base'
-import cheerio from 'cheerio'
+import { ArticleItem, Base, Config } from '../base.js'
+import { load } from 'cheerio'
 import { Sitdown } from 'sitdown'
-import { catchCount, throttle } from '../../decorator'
-import { info } from '../../log'
-import { platform } from '../../decorator/platform'
+import { catchCount, throttle } from '../../decorator/index.js'
+import { info } from '../../log/index.js'
 
 const sitdown = new Sitdown({
   keepFilter: ['style'],
@@ -11,7 +10,7 @@ const sitdown = new Sitdown({
   bulletListMarker: '-',
   hr: '---',
 })
-@platform('csdn')
+
 export class Csdn extends Base {
   headers = {
     'user-agent':
@@ -40,16 +39,16 @@ export class Csdn extends Base {
     const articleIds: number[] = []
     while (true) {
       const { data: html } = await this.axios.get(
-        `https://blog.csdn.net/${this.config.userId}/article/list/${i++}`
+        `https://blog.csdn.net/${this.config.userId}/article/list/${i++}`,
       )
-      const $ = cheerio.load(html)
+      const $ = load(html)
 
       const list = $('.article-item-box')
       if (list?.length > 0) {
         $('.article-item-box').each(function () {
           const id = $('a', this)
-            .attr('href')
-            .match(/(\d{1,})$/)
+            ?.attr('href')
+            ?.match(/(\d{1,})$/)
 
           if (id) {
             articleIds.push(Number(id[0]))
@@ -65,16 +64,16 @@ export class Csdn extends Base {
 
   @throttle(1000)
   @catchCount()
-  async getByPage(id: number): Promise<ArticleItem> {
+  async getByPage(id: number): Promise<ArticleItem | undefined> {
     const { data: html } = await this.axios.get(
-      `https://blog.csdn.net/${this.config.userId}/article/details/${id}`
+      `https://blog.csdn.net/${this.config.userId}/article/details/${id}`,
     )
 
     const tags: string[] = [] //标签
     const categories: string[] = [] //分类
 
-    const $ = cheerio.load(html, {
-      decodeEntities: true,
+    const $ = load(html, {
+      // decodeEntities: true,
     })
     const title = $('.title-article').text()
     const x = $('#content_views').html()
@@ -99,7 +98,7 @@ export class Csdn extends Base {
       title,
       tags,
       categories,
-      date: this.idTimeMap.get(id),
+      date: this.idTimeMap.get(id)!,
     }
   }
   @throttle()
@@ -142,14 +141,14 @@ export class Csdn extends Base {
       tags,
       categories,
       title,
-      date: this.idTimeMap.get(id),
+      date: this.idTimeMap.get(id)!,
     }
   }
 
   async run() {
     const list = await this.getMain()
     const resultList: ArticleItem[] = []
-    let fn: (id: number) => Promise<ArticleItem> = null
+    let fn: (id: number) => Promise<ArticleItem | undefined>
     if (this.config.cookie) {
       info('提供cookie，使用文章api获取模式')
       fn = this.getByApi
@@ -159,9 +158,10 @@ export class Csdn extends Base {
     }
     for (let id of list) {
       info(`拉取:${id}`)
-      let result: ArticleItem = null
-      result = await fn.call(this, id)
-      resultList.push(result)
+      const result = await fn.call(this, id)
+      if (result) {
+        resultList.push(result)
+      }
     }
     return resultList
   }

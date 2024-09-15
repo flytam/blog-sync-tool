@@ -1,6 +1,5 @@
-import { ArticleItem, Base } from '../base'
-import { catchCount } from '../../decorator'
-import { platform } from '../../decorator/platform'
+import { ArticleItem, Base } from '../base.js'
+import { catchCount } from '../../decorator/index.js'
 import { Sitdown } from 'sitdown'
 
 const sitdown = new Sitdown({
@@ -25,7 +24,6 @@ interface Config {
   cookie?: string
 }
 
-@platform('juejin_book')
 export class JuejinBook extends Base<Config> {
   headers = {
     // 'user-agent':
@@ -83,7 +81,7 @@ export class JuejinBook extends Base<Config> {
         'en-US',
         {
           timeZone: 'Asia/Shanghai',
-        }
+        },
       ),
     }
   }

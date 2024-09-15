@@ -87,6 +87,7 @@ export class Juejin extends Base<Config> {
       err_no: number
     }>('https://api.juejin.cn/content_api/v1/article/detail', {
       article_id: id,
+      client_type: 2608,
     })
 
     return {

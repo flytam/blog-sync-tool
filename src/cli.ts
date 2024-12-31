@@ -6,7 +6,7 @@ import path from 'path'
 import { run } from './core/index.js'
 import { error, info } from './log/index.js'
 // cli
-import pkg from '../package.json' assert { type: 'json' }
+import pkg from '../package.json' with { type: 'json' }
 import fs from 'fs-extra'
 
 export const cli = async () => {
